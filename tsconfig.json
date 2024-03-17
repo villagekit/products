@@ -1,0 +1,10 @@
+{
+  "extends": "../villagekit/dev/tsconfig/base.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@villagekit/design/kit": ["../villagekit/core/design/src/kit"]
+    }
+  },
+  "exclude": ["node_modules"]
+}

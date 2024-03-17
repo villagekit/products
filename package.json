@@ -1,0 +1,14 @@
+{
+  "name": "@villagekit/products",
+  "private": true,
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/villagekit/products.git"
+  },
+  "license": "BlueOak-1.0.0",
+  "bugs": {
+    "url": "https://github.com/villagekit/products/issues"
+  },
+  "homepage": "https://github.com/villagekit/products#readme"
+}

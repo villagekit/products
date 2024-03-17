@@ -1,0 +1,7 @@
+[product]
+name = "@villagekit/chair"
+label = "Chair"
+description = "A conventional 4 legged chair. Useful for sitting at a desk, table, or to help you reach that top shelf."
+tags = ['furniture', 'seating']
+type = "kit"
+exports = "./chair.ts"
