@@ -1,21 +1,6 @@
 import type { Params, Parts, PartsFn, Presets } from '@villagekit/design/kit'
 
 export const parameters = {
-  seatWidth: {
-    label: 'Seat width',
-    shortId: 'sw',
-    type: 'number',
-    min: 5,
-    max: 10,
-    step: 5,
-  },
-  seatDepth: {
-    label: 'Seat depth',
-    shortId: 'sd',
-    type: 'number',
-    min: 5,
-    max: 15,
-  },
   seatHeight: {
     label: 'Seat height',
     description: 'The height from the ground to the top of the seat',
@@ -24,79 +9,43 @@ export const parameters = {
     min: 5,
     max: 15,
   },
-  shouldIncludeBack: {
-    label: 'Include back',
-    shortId: 'b',
-    type: 'boolean',
-  },
-  backHeight: {
-    label: 'Back height',
-    description: 'The height from the seat to the top of the backrest',
-    shortId: 'bh',
-    type: 'number',
-    max: 10,
-    min: 5,
-  },
 } satisfies Params
 
 export const presets: Presets<typeof parameters> = [
   {
-    id: 'regular-with-back',
-    label: 'Regular With Back',
-    values: {
-      backHeight: 10,
-      seatDepth: 10,
-      seatHeight: 10,
-      seatWidth: 10,
-      shouldIncludeBack: true,
-    },
-  },
-  {
     id: 'regular',
-    label: 'Regular (Without Back)',
+    label: 'Regular',
     values: {
-      backHeight: 10,
-      seatDepth: 10,
       seatHeight: 10,
-      seatWidth: 10,
-      shouldIncludeBack: false,
     },
   },
 ]
 
 export const parts: PartsFn<typeof parameters> = (parameters) => {
-  const { seatWidth, seatDepth, seatHeight, backHeight, shouldIncludeBack } = parameters
+  const { seatHeight } = parameters
 
-  const backZBeamEndZ = shouldIncludeBack ? seatHeight + backHeight : seatHeight
-  const seatPanelStartY = shouldIncludeBack ? 1 : 0
-  const seatPanelEndY = shouldIncludeBack ? seatDepth + 1 : seatDepth
+  const seatDepth = 10
+  const seatWidth = 10
 
   return [
     {
       type: 'gridpanel:xy',
       x: [0, seatWidth],
-      y: [seatPanelStartY, seatPanelEndY],
+      y: [0, seatDepth],
       z: seatHeight,
-    },
-
-    shouldIncludeBack && {
-      type: 'gridpanel:xz',
-      x: [0, seatWidth],
-      y: 1,
-      z: [seatHeight + 1, seatHeight + 1 + backHeight],
     },
 
     {
       type: 'gridbeam:z',
       x: 0,
       y: 0,
-      z: [0, backZBeamEndZ],
+      z: [0, seatHeight],
     },
     {
       type: 'gridbeam:z',
       x: seatWidth - 1,
       y: 0,
-      z: [0, backZBeamEndZ],
+      z: [0, seatHeight],
     },
     {
       type: 'gridbeam:z',
