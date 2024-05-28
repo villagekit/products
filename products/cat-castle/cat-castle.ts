@@ -10,7 +10,7 @@ export const parts: Parts = [
   level({ z: 2, beamX: [0, castleWidth], panelX: [0, castleWidth] }),
   level({ z: 11, beamX: [-shelfOverhang, castleWidth], panelX: [-shelfOverhang, 0] }),
   level({ z: 20, beamX: [0, castleWidth + shelfOverhang], panelX: [0, castleWidth + shelfOverhang] }),
-  level({ z: 30, beamX: [-shelfOverhang, castleWidth], panelX: [-shelfOverhang, castleWidth] }),
+  level({ z: 29, beamX: [-shelfOverhang, castleWidth], panelX: [-shelfOverhang, castleWidth] }),
 ]
 
 function posts(): Parts {
