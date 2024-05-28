@@ -1,0 +1,7 @@
+[product]
+name = "@villagekit/cat-castle"
+label = "Cat Castle"
+description = ""
+tags = ['furniture', 'cat']
+type = "kit"
+exports = "./cat-castle.ts"
