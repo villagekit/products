@@ -1,0 +1,11 @@
+[product]
+name = "@villagekit/{{ dashCase label }}"
+label = "{{ label }}"
+description = "{{ description }}"
+tags = [
+  {{#each (splitCommaList tags)}}
+  '{{ this }}'
+  {{/each}}
+]
+type = "kit"
+exports = "./{{ dashCase label }}.ts"

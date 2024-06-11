@@ -10,5 +10,8 @@
   "bugs": {
     "url": "https://github.com/villagekit/products/issues"
   },
-  "homepage": "https://github.com/villagekit/products#readme"
+  "homepage": "https://github.com/villagekit/products#readme",
+  "devDependencies": {
+    "plop": "^4.0.1"
+  }
 }
