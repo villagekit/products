@@ -1,7 +1,10 @@
 {
   "name": "@villagekit/products",
   "private": true,
-  "scripts": {},
+  "type": "module",
+  "scripts": {
+    "generate:kit": "plop kit"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/villagekit/products.git"

@@ -4,7 +4,7 @@ label = "{{ label }}"
 description = "{{ description }}"
 tags = [
   {{#each (splitCommaList tags)}}
-  '{{ this }}'
+  '{{ this }}'{{#unless @last}},{{/unless}
   {{/each}}
 ]
 type = "kit"
