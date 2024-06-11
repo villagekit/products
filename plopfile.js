@@ -3,7 +3,7 @@ const LABEL_RE = /^[\w ]+$/
 const TAGS_RE = /^[\w-]+(,\s*[\w-]+)*$/
 
 export default function (
-	/** @type {import('plop').NodePlopAPI} */
+  /** @type {import('plop').NodePlopAPI} */
   plop
 ) {
   plop.setHelper('splitCommaList', (input) => {
