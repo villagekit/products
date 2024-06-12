@@ -63,13 +63,7 @@ export const presets: Presets<typeof parameters> = [
 ]
 
 export const parts: PartsFn<typeof parameters> = (parameters) => {
-  const {
-    poleHeight,
-    footHeight,
-    footDepth,
-    footWidth,
-    hasExtension,
-  } = parameters
+  const { poleHeight, footHeight, footDepth, footWidth, hasExtension } = parameters
 
   const poleSpacing = 5 + footWidth * 2
 
@@ -115,7 +109,7 @@ export const parts: PartsFn<typeof parameters> = (parameters) => {
       z: footHeight - 1,
     },
 
-    Array.from(Array(footWidth).keys()).map(i => {
+    Array.from(Array(footWidth).keys()).map((i) => {
       const offset = Math.floor(footDepth / 2)
       return [
         {
