@@ -179,7 +179,7 @@ export const parts: Parts = [
 ]
 
 type PostOptions = {
-  x: number,
+  x: number
   footSide: 'right' | 'left'
 }
 
@@ -212,9 +212,7 @@ function post(options: PostOptions): Parts {
     // bottom feet
     {
       type: 'gridbeam:x',
-      x: footSide === 'right'
-        ? [x, x + 2]
-        : [x - 1, x + 1],
+      x: footSide === 'right' ? [x, x + 2] : [x - 1, x + 1],
       y: 1,
       z: 1,
     },
@@ -236,9 +234,7 @@ function post(options: PostOptions): Parts {
     // top feet
     {
       type: 'gridbeam:x',
-      x: footSide === 'right'
-        ? [x, x + 2]
-        : [x - 1, x + 1],
+      x: footSide === 'right' ? [x, x + 2] : [x - 1, x + 1],
       y: 0,
       z: 61,
     },
