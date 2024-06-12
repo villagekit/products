@@ -1,13 +1,12 @@
-
 const LABEL_RE = /^[\w ]+$/
 const TAGS_RE = /^[\w-]+(,\s*[\w-]+)*$/
 
 export default function (
   /** @type {import('plop').NodePlopAPI} */
-  plop
+  plop,
 ) {
   plop.setHelper('splitCommaList', (input) => {
-    return input.split(',').map(i => i.trim())
+    return input.split(',').map((i) => i.trim())
   })
   plop.setGenerator('kit', {
     description: 'Generate a new kit product',
@@ -18,13 +17,13 @@ export default function (
         message: 'Product label',
         validate: (input) => {
           return LABEL_RE.test(input)
-        }
+        },
       },
       {
         type: 'input',
         name: 'description',
         message: 'Product description',
-        default: ''
+        default: '',
       },
       {
         type: 'input',
@@ -33,7 +32,7 @@ export default function (
         default: '',
         validate: (input) => {
           return TAGS_RE.test(input)
-        }
+        },
       },
     ],
     actions: [
@@ -42,7 +41,7 @@ export default function (
         destination: './products/{{ dashCase label }}',
         base: './templates/kit',
         templateFiles: './templates/kit/*',
-      }
-    ]
+      },
+    ],
   })
 }

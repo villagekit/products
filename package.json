@@ -3,7 +3,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "generate:kit": "plop kit"
+    "format": "biome check --write .",
+    "format:unsafe": "biome check --write --unsafe .",
+    "generate:kit": "plop kit",
+    "lint": "biome check ."
   },
   "repository": {
     "type": "git",
