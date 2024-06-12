@@ -7,7 +7,7 @@ export const parts: Parts = [
   posts({
     height: 30,
     xValues: [0, 9, 18, 27, 36],
-    yValues: [0, 9]
+    yValues: [0, 9],
   }),
 
   level({
@@ -15,73 +15,73 @@ export const parts: Parts = [
     y: [1, 1 + shelfDepth],
     firstBeam: 'x',
     secondBeam: 'y',
-    z: 3
+    z: 3,
   }),
   level({
     x: [9, 9 + shelfWidth],
     y: [1, 1 + shelfDepth],
     firstBeam: 'x',
     secondBeam: 'y',
-    z: 5
+    z: 5,
   }),
   level({
     x: [18, 18 + shelfWidth],
     y: [1, 1 + shelfDepth],
     firstBeam: 'x',
     secondBeam: 'y',
-    z: 3
+    z: 3,
   }),
   level({
     x: [27, 27 + shelfWidth],
     y: [1, 1 + shelfDepth],
     firstBeam: 'x',
     secondBeam: 'y',
-    z: 5
+    z: 5,
   }),
 
   level({
     x: [1, 1 + shelfDepth],
     y: [0, shelfWidth],
     firstBeam: 'y',
-    z: 9
+    z: 9,
   }),
 
   level({
     x: [18, 18 + shelfWidth],
     y: [1, 1 + shelfDepth],
     firstBeam: 'x',
-    z: 11
+    z: 11,
   }),
   level({
     x: [9 + 1, 9 + 1 + shelfDepth],
     y: [0, shelfWidth],
     firstBeam: 'y',
-    z: 15
+    z: 15,
   }),
   level({
     x: [0, shelfWidth],
     y: [1, 1 + shelfDepth],
     firstBeam: 'x',
-    z: 19
+    z: 19,
   }),
 
   level({
     x: [27, 27 + shelfWidth],
     y: [1, 1 + shelfDepth],
     firstBeam: 'x',
-    z: 17
+    z: 17,
   }),
   level({
     x: [18 + 1, 18 + 1 + shelfDepth],
     y: [0, shelfWidth],
     firstBeam: 'y',
-    z: 22
+    z: 22,
   }),
   level({
     x: [9, 9 + shelfWidth],
     y: [1, 1 + shelfDepth],
     firstBeam: 'x',
-    z: 25
+    z: 25,
   }),
 
   level({
@@ -89,20 +89,20 @@ export const parts: Parts = [
     y: [0, shelfWidth],
     firstBeam: 'y',
     secondBeam: 'x',
-    z: 30
+    z: 30,
   }),
   level({
     x: [18, 18 + shelfWidth],
     y: [1, 1 + shelfDepth],
     firstBeam: 'x',
-    z: 30
+    z: 30,
   }),
   level({
     x: [27 + 1, 27 + 1 + shelfDepth],
     y: [0, 0 + shelfWidth],
     firstBeam: 'y',
     secondBeam: 'x',
-    z: 29
+    z: 29,
   }),
 ]
 
@@ -116,16 +116,16 @@ function posts(options: PostOptions): Parts {
   const { height, xValues, yValues } = options
 
   return [
-    xValues.map(x => [
-      yValues.map(y => [
+    xValues.map((x) => [
+      yValues.map((y) => [
         {
           type: 'gridbeam:z',
           x,
           y,
-          z: [0, height]
-        }
-      ])
-    ])
+          z: [0, height],
+        },
+      ]),
+    ]),
   ]
 }
 
@@ -146,69 +146,69 @@ function level(options: LevelOptions): Parts {
       x,
       y,
       z,
-      fit: 'bottom'
+      fit: 'bottom',
     },
 
     firstBeam === 'x'
       ? [
-        {
-          type: 'gridbeam:x',
-          x,
-          y: y[0],
-          z: z - 1
-        },
-        {
-          type: 'gridbeam:x',
-          x,
-          y: y[1] - 1,
-          z: z - 1
-        }
-      ]
+          {
+            type: 'gridbeam:x',
+            x,
+            y: y[0],
+            z: z - 1,
+          },
+          {
+            type: 'gridbeam:x',
+            x,
+            y: y[1] - 1,
+            z: z - 1,
+          },
+        ]
       : [
-        {
-          type: 'gridbeam:y',
-          x: x[0],
-          y,
-          z: z - 1
-        },
-        {
-          type: 'gridbeam:y',
-          x: x[1] - 1,
-          y,
-          z: z - 1
-        }
-      ],
+          {
+            type: 'gridbeam:y',
+            x: x[0],
+            y,
+            z: z - 1,
+          },
+          {
+            type: 'gridbeam:y',
+            x: x[1] - 1,
+            y,
+            z: z - 1,
+          },
+        ],
 
     secondBeam === 'x'
       ? [
-        {
-          type: 'gridbeam:x',
-          x: [x[0] - 1, x[1] + 1],
-          y: y[0] + 1,
-          z: z - 2
-        },
-        {
-          type: 'gridbeam:x',
-          x: [x[0] - 1, x[1] + 1],
-          y: y[1] - 2,
-          z: z - 2
-        }
-      ]
+          {
+            type: 'gridbeam:x',
+            x: [x[0] - 1, x[1] + 1],
+            y: y[0] + 1,
+            z: z - 2,
+          },
+          {
+            type: 'gridbeam:x',
+            x: [x[0] - 1, x[1] + 1],
+            y: y[1] - 2,
+            z: z - 2,
+          },
+        ]
       : secondBeam === 'y'
-      ? [
-        {
-          type: 'gridbeam:y',
-          x: x[0] + 1,
-          y: [y[0] - 1, y[1] + 1],
-          z: z - 2
-        },
-        {
-          type: 'gridbeam:y',
-          x: x[1] - 2,
-          y: [y[0] - 1, y[1] + 1],
-          z: z - 2
-        }
-      ]
-      : null
+        ? [
+            {
+              type: 'gridbeam:y',
+              x: x[0] + 1,
+              y: [y[0] - 1, y[1] + 1],
+              z: z - 2,
+            },
+            {
+              type: 'gridbeam:y',
+              x: x[1] - 2,
+              y: [y[0] - 1, y[1] + 1],
+              z: z - 2,
+            },
+          ]
+        : null,
   ]
 }
