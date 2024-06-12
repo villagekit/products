@@ -1,0 +1,11 @@
+[product]
+name = "@villagekit/stilts"
+label = "Stilts"
+description = ""
+tags = [
+  'kid',
+  'play',
+  'circus'
+]
+type = "kit"
+exports = "./stilts.ts"
