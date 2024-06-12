@@ -38,7 +38,7 @@ export const parameters = {
     type: 'number',
     min: 2,
     max: 10,
-  }
+  },
 } satisfies Params
 
 export const presets: Presets<typeof parameters> = [
@@ -59,11 +59,11 @@ export const parts: PartsFn<typeof parameters> = (parameters) => {
   const { unitHeight, unitWidth, unitDepth, numUnits, boxHeight } = parameters
 
   return [
-    Array.from(Array(numUnits).keys()).map(unitIndex => {
+    Array.from(Array(numUnits).keys()).map((unitIndex) => {
       const totalBoxHeight = unitHeight - 3
       const requiredBoxHeight = boxHeight + 3
       const numBoxes = Math.floor(totalBoxHeight / requiredBoxHeight)
-      const boxZs = Array.from(Array(numBoxes).keys()).map(boxIndex => {
+      const boxZs = Array.from(Array(numBoxes).keys()).map((boxIndex) => {
         return totalBoxHeight - requiredBoxHeight * boxIndex - boxHeight
       })
 
@@ -81,18 +81,18 @@ export const parts: PartsFn<typeof parameters> = (parameters) => {
         boxHeight,
         boxZs,
       })
-    })
+    }),
   ]
 }
 
 type UnitOptions = {
   start: {
-    x: number,
-    y: number,
+    x: number
+    y: number
     z: number
   }
   unitSize: {
-    x: number,
+    x: number
     y: number
     z: number
   }
@@ -128,45 +128,47 @@ function unit(options: UnitOptions): Parts {
       z: [start.z, start.z + unitSize.z],
     },
 
-    boxZs.map((z): Parts => [
-      {
-        type: 'gridbeam:x',
-        x: [start.x, start.x + unitSize.x],
-        y: start.y + 1,
-        z: z - 2,
-      },
-      {
-        type: 'gridbeam:x',
-        x: [start.x, start.x + unitSize.x],
-        y: start.y + unitSize.y - 2,
-        z: z - 2,
-      },
-      {
-        type: 'gridbeam:y',
-        x: start.x + 1,
-        y: [start.y, start.y + unitSize.y],
-        z: z - 1,
-      },
-      {
-        type: 'gridbeam:y',
-        x: start.x + unitSize.x - 2,
-        y: [start.y, start.y + unitSize.y],
-        z: z - 1,
-      },
+    boxZs.map(
+      (z): Parts => [
+        {
+          type: 'gridbeam:x',
+          x: [start.x, start.x + unitSize.x],
+          y: start.y + 1,
+          z: z - 2,
+        },
+        {
+          type: 'gridbeam:x',
+          x: [start.x, start.x + unitSize.x],
+          y: start.y + unitSize.y - 2,
+          z: z - 2,
+        },
+        {
+          type: 'gridbeam:y',
+          x: start.x + 1,
+          y: [start.y, start.y + unitSize.y],
+          z: z - 1,
+        },
+        {
+          type: 'gridbeam:y',
+          x: start.x + unitSize.x - 2,
+          y: [start.y, start.y + unitSize.y],
+          z: z - 1,
+        },
 
-      box({
-        start: {
-          x: start.x + 1.5,
-          y: start.y + 1.5,
-          z: z + 0.5,
-        },
-        size: {
-          x: unitSize.x - 3,
-          y: unitSize.y - 3,
-          z: boxHeight,
-        },
-      })
-    ]),
+        box({
+          start: {
+            x: start.x + 1.5,
+            y: start.y + 1.5,
+            z: z + 0.5,
+          },
+          size: {
+            x: unitSize.x - 3,
+            y: unitSize.y - 3,
+            z: boxHeight,
+          },
+        }),
+      ],
+    ),
 
     {
       type: 'gridbeam:y',
@@ -199,18 +201,18 @@ function unit(options: UnitOptions): Parts {
       y: [start.y, start.y + unitSize.y],
       z: unitSize.z,
       fit: 'bottom',
-    }
+    },
   ]
 }
 
 type BoxOptions = {
   start: {
-    x: number,
-    y: number,
+    x: number
+    y: number
     z: number
   }
   size: {
-    x: number,
+    x: number
     y: number
     z: number
   }
