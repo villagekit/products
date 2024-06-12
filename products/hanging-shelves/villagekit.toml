@@ -1,0 +1,12 @@
+[product]
+name = "@villagekit/hanging-shelves"
+label = "Hanging Shelves"
+description = ""
+tags = [
+  'furniture',
+  'storage',
+  'shelving',
+  'decor'
+]
+type = "kit"
+exports = "./hanging-shelves.ts"
