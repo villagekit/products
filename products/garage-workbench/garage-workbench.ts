@@ -1,24 +1,89 @@
-import type { Parts } from '@villagekit/design/kit'
+import type { Params, Parts, PartsFn, Presets } from '@villagekit/design/kit'
 
-export const parts: Parts = [
-  unit({
-    start: {
-      x: 0,
-      y: 0,
-      z: 0,
+export const parameters = {
+  unitHeight: {
+    label: 'Unit height',
+    shortId: 'uh',
+    type: 'number',
+    min: 10,
+    max: 30,
+    step: 10,
+  },
+  unitWidth: {
+    label: 'Unit width',
+    shortId: 'uw',
+    type: 'number',
+    min: 5,
+    max: 20,
+    step: 5,
+  },
+  unitDepth: {
+    label: 'Unit depth',
+    shortId: 'ud',
+    type: 'number',
+    min: 5,
+    max: 20,
+    step: 5,
+  },
+  numUnits: {
+    label: 'Num units',
+    shortId: 'nu',
+    type: 'number',
+    min: 1,
+    max: 6,
+  },
+  boxHeight: {
+    label: 'Box height',
+    shortId: 'nu',
+    type: 'number',
+    min: 2,
+    max: 10,
+  }
+} satisfies Params
+
+export const presets: Presets<typeof parameters> = [
+  {
+    id: 'regular',
+    label: 'Regular',
+    values: {
+      unitHeight: 20,
+      unitWidth: 15,
+      unitDepth: 15,
+      numUnits: 3,
+      boxHeight: 5,
     },
-    unitSize: {
-      x: 15,
-      y: 15,
-      z: 20,
-    },
-    boxHeight: 5,
-    boxZs: [
-      4,
-      12
-    ]
-  })
+  },
 ]
+
+export const parts: PartsFn<typeof parameters> = (parameters) => {
+  const { unitHeight, unitWidth, unitDepth, numUnits, boxHeight } = parameters
+
+  return [
+    Array.from(Array(numUnits).keys()).map(unitIndex => {
+      const totalBoxHeight = unitHeight - 3
+      const requiredBoxHeight = boxHeight + 3
+      const numBoxes = Math.floor(totalBoxHeight / requiredBoxHeight)
+      const boxZs = Array.from(Array(numBoxes).keys()).map(boxIndex => {
+        return totalBoxHeight - requiredBoxHeight * boxIndex - boxHeight
+      })
+
+      return unit({
+        start: {
+          x: 0 + unitWidth * unitIndex,
+          y: 0,
+          z: 0,
+        },
+        unitSize: {
+          x: unitWidth,
+          y: unitDepth,
+          z: unitHeight,
+        },
+        boxHeight,
+        boxZs,
+      })
+    })
+  ]
+}
 
 type UnitOptions = {
   start: {
