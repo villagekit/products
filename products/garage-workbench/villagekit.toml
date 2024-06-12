@@ -1,0 +1,12 @@
+[product]
+name = "@villagekit/garage-workbench"
+label = "Garage Workbench"
+description = ""
+tags = [
+  'furniture',
+  'garage',
+  'workbench',
+  'storage'
+]
+type = "kit"
+exports = "./garage-workbench.ts"
