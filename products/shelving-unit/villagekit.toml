@@ -1,0 +1,10 @@
+[product]
+name = "@villagekit/shelving-unit"
+label = "Shelving unit"
+description = "This modular shelving unit offers multiple levels for versatile storage."
+tags = [
+  'furniture',
+  'storage'
+]
+type = "kit"
+exports = "./shelving-unit.ts"
