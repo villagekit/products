@@ -1,0 +1,10 @@
+[product]
+name = "@villagekit/makers-desk"
+label = "Makers Desk"
+description = "This modular workspace features a spacious work surface and an elevated shelf for additional storage."
+tags = [
+  'furniture',
+  'desk'
+]
+type = "kit"
+exports = "./makers-desk.ts"
