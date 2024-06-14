@@ -1,0 +1,11 @@
+[product]
+name = "@villagekit/wall-shelves-horizontal"
+label = "Wall Shelves Horizontal"
+description = "This modular shelf system offers staggered levels for versatile wall-mounted storage, or for your favorite feline."
+tags = [
+  'furniture',
+  'storage',
+  'cat'
+]
+type = "kit"
+exports = "./wall-shelves-horizontal.ts"
