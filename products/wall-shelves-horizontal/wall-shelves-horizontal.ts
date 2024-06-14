@@ -115,18 +115,21 @@ type PostsOptions = {
 function posts(options: PostsOptions): Parts {
   const { height, postSpacing } = options
 
+  const leftPostX = -Math.floor((1 / 2) * postSpacing)
+  const rightPostX = Math.ceil((1 / 2) * postSpacing)
+
   return [
     // left
     {
       type: 'gridbeam:z',
-      x: -Math.floor((1 / 2) * postSpacing),
+      x: leftPostX,
       y: 1,
       z: [0, height],
     },
     // right
     {
       type: 'gridbeam:z',
-      x: Math.ceil((1 / 2) * postSpacing),
+      x: rightPostX,
       y: 1,
       z: [0, height],
     },
@@ -180,18 +183,15 @@ function shelf(options: ShelfOptions): Parts {
       return [
         {
           type: 'gridbeam:x',
-          x: [
-            -shelfBeamWidth + Math.floor((1 / 2) * postSpacing) + 1,
-            Math.ceil((1 / 2) * postSpacing) + 1,
-          ],
+          x: [rightPostX, rightPostX - shelfBeamWidth],
           y: 0,
           z: z - 1,
         },
         {
           type: 'gridpanel:xy',
           x: [
-            Math.floor((1 / 2) * (shelfPanelWidth - postSpacing)) - shelfPanelWidth + 1,
-            Math.floor((1 / 2) * (shelfPanelWidth - postSpacing)) + 1,
+            Math.floor((1 / 2) * (shelfPanelWidth - postSpacing)),
+            Math.floor((1 / 2) * (shelfPanelWidth - postSpacing)) - shelfPanelWidth,
           ],
           y: [1, -shelfPanelDepth + 1],
           z: z,
