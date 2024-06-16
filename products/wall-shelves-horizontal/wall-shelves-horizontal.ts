@@ -150,22 +150,28 @@ function shelf(options: ShelfOptions): Parts {
 
   const leftPostX = -Math.floor((1 / 2) * postSpacing)
   const rightPostX = Math.ceil((1 / 2) * postSpacing)
+  const leftPanelOverhang = Math.floor((1 / 2) * (shelfPanelWidth - shelfBeamWidth))
+  const rightPanelOverhang = Math.ceil((1 / 2) * (shelfPanelWidth - shelfBeamWidth))
+
+  const yBeams: Parts = [
+    {
+      type: 'gridbeam:y',
+      x: leftPostX + 1,
+      y: [0, 2],
+      z: z - 2,
+    },
+    {
+      type: 'gridbeam:y',
+      x: rightPostX - 1,
+      y: [0, 2],
+      z: z - 2,
+    },
+  ]
 
   switch (alignment) {
     case 'center':
       return [
-        {
-          type: 'gridbeam:y',
-          x: leftPostX + 1,
-          y: [0, 2],
-          z: z - 2,
-        },
-        {
-          type: 'gridbeam:y',
-          x: rightPostX - 1,
-          y: [0, 2],
-          z: z - 2,
-        },
+        yBeams,
         {
           type: 'gridbeam:x',
           x: [-Math.floor((1 / 2) * shelfBeamWidth), Math.ceil((1 / 2) * shelfBeamWidth)],
@@ -181,6 +187,7 @@ function shelf(options: ShelfOptions): Parts {
       ]
     case 'left':
       return [
+        yBeams,
         {
           type: 'gridbeam:x',
           x: [rightPostX, rightPostX - shelfBeamWidth],
@@ -189,31 +196,23 @@ function shelf(options: ShelfOptions): Parts {
         },
         {
           type: 'gridpanel:xy',
-          x: [
-            Math.floor((1 / 2) * (shelfPanelWidth - postSpacing)),
-            Math.floor((1 / 2) * (shelfPanelWidth - postSpacing)) - shelfPanelWidth,
-          ],
+          x: [rightPostX + rightPanelOverhang, rightPostX + rightPanelOverhang - shelfPanelWidth],
           y: [0, -shelfPanelDepth],
           z: z,
         },
       ]
     case 'right':
       return [
+        yBeams,
         {
           type: 'gridbeam:x',
-          x: [
-            -Math.ceil((1 / 2) * postSpacing),
-            shelfBeamWidth - Math.floor((1 / 2) * postSpacing),
-          ],
+          x: [leftPostX, leftPostX + shelfBeamWidth],
           y: 0,
           z: z - 1,
         },
         {
           type: 'gridpanel:xy',
-          x: [
-            -Math.floor((1 / 2) * (shelfPanelWidth - postSpacing)),
-            -Math.floor((1 / 2) * (shelfPanelWidth - postSpacing)) + shelfPanelWidth,
-          ],
+          x: [leftPostX - leftPanelOverhang, leftPostX - leftPanelOverhang + shelfPanelWidth],
           y: [0, -shelfPanelDepth],
           z: z,
         },
