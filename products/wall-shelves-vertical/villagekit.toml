@@ -1,0 +1,11 @@
+[product]
+name = "@villagekit/wall-shelves-vertical"
+label = "Wall Shelves Vertical"
+description = "This modular shelf system features a vertical design with multiple levels for versatile wall-mounted storage or as a cat climbing structure."
+tags = [
+  'furniture',
+  'storage',
+  'cat'
+]
+type = "kit"
+exports = "./wall-shelves-vertical.ts"
