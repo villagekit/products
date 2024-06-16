@@ -175,7 +175,7 @@ function shelf(options: ShelfOptions): Parts {
         {
           type: 'gridpanel:xy',
           x: [-Math.floor((1 / 2) * shelfPanelWidth), Math.ceil((1 / 2) * shelfPanelWidth)],
-          y: [1, -shelfPanelDepth + 1],
+          y: [0, -shelfPanelDepth],
           z: z,
         },
       ]
@@ -193,7 +193,7 @@ function shelf(options: ShelfOptions): Parts {
             Math.floor((1 / 2) * (shelfPanelWidth - postSpacing)),
             Math.floor((1 / 2) * (shelfPanelWidth - postSpacing)) - shelfPanelWidth,
           ],
-          y: [1, -shelfPanelDepth + 1],
+          y: [0, -shelfPanelDepth],
           z: z,
         },
       ]
@@ -211,10 +211,10 @@ function shelf(options: ShelfOptions): Parts {
         {
           type: 'gridpanel:xy',
           x: [
-            -Math.floor((1 / 2) * (shelfPanelWidth - postSpacing)) + 1,
-            -Math.floor((1 / 2) * (shelfPanelWidth - postSpacing)) + shelfPanelWidth + 1,
+            -Math.floor((1 / 2) * (shelfPanelWidth - postSpacing)),
+            -Math.floor((1 / 2) * (shelfPanelWidth - postSpacing)) + shelfPanelWidth,
           ],
-          y: [1, -shelfPanelDepth + 1],
+          y: [0, -shelfPanelDepth],
           z: z,
         },
       ]
