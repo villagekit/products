@@ -1,7 +1,5 @@
 import type { Params, Parts, PartsFn, Presets } from '@villagekit/design/kit'
 
-// TODO: fix negative ranges after https://github.com/villagekit/villagekit/issues/47
-
 export const parameters = {
   treeHeight: {
     label: 'Tree height',
@@ -118,7 +116,7 @@ function base(options: BaseOptions): Parts {
     {
       type: 'gridpanel:xy',
       x: [-Math.floor((1 / 2) * leafWidth), Math.ceil((1 / 2) * leafWidth)],
-      y: [-1, -1 - leafLength],
+      y: [-2, -2 - leafLength],
       z: 1,
     },
 
@@ -143,7 +141,7 @@ function base(options: BaseOptions): Parts {
     },
     {
       type: 'gridpanel:xy',
-      x: [-1, -1 - leafLength],
+      x: [-2, -2 - leafLength],
       y: [-Math.floor((1 / 2) * leafWidth) + 1, Math.ceil((1 / 2) * leafWidth) + 1],
       z: 2,
     },
@@ -219,7 +217,7 @@ function branch(options: BranchOptions): Parts {
         {
           type: 'gridbeam:y',
           x: 0,
-          y: [1, 1 - leafLength + 1],
+          y: [1, 1 - leafLength],
           z: branchZ,
         },
         {
@@ -228,7 +226,7 @@ function branch(options: BranchOptions): Parts {
             -Math.floor((1 / 2) * leafWidth) - leafNudge + 1,
             Math.ceil((1 / 2) * leafWidth) - leafNudge + 1,
           ],
-          y: [-1, -1 - leafLength],
+          y: [-2, -2 - leafLength],
           z: branchZ + 1,
         },
       ]
@@ -236,13 +234,13 @@ function branch(options: BranchOptions): Parts {
       return [
         {
           type: 'gridbeam:x',
-          x: [1, 1 - branchLength + 1],
+          x: [1, 1 - branchLength],
           y: 0,
           z: branchZ,
         },
         {
           type: 'gridpanel:xy',
-          x: [-1, -1 - leafLength],
+          x: [-2, -2 - leafLength],
           y: [
             -Math.floor((1 / 2) * leafWidth) + leafNudge,
             Math.ceil((1 / 2) * leafWidth) + leafNudge,

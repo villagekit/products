@@ -47,13 +47,13 @@ export const parts: Parts = [
   {
     type: 'gridbeam:y',
     x: -1,
-    y: [1, -9],
+    y: [0, -10],
     z: 20,
   },
   {
     type: 'gridbeam:y',
     x: 1,
-    y: [1, -9],
+    y: [0, -10],
     z: 20,
   },
   {
@@ -84,13 +84,13 @@ export const parts: Parts = [
   {
     type: 'gridbeam:y',
     x: -1,
-    y: [1, -9],
+    y: [0, -10],
     z: 38,
   },
   {
     type: 'gridbeam:y',
     x: 1,
-    y: [1, -9],
+    y: [0, -10],
     z: 38,
   },
   {
