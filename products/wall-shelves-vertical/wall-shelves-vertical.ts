@@ -13,9 +13,8 @@ export const parameters = {
     label: 'Shelf width',
     shortId: 'sw',
     type: 'number',
-    min: 5,
+    min: 4,
     max: 10,
-    step: 5,
   },
   shelfDepth: {
     label: 'Shelf depth',
@@ -53,7 +52,7 @@ export const presets: Presets<typeof parameters> = [
     id: 'default',
     label: 'Default',
     values: {
-      height: 23,
+      height: 30,
       shelfWidth: 8,
       shelfDepth: 10,
       ladderOffset: 0,
@@ -65,7 +64,7 @@ export const presets: Presets<typeof parameters> = [
     id: 'cat-ladder',
     label: 'Cat Ladder',
     values: {
-      height: 23,
+      height: 30,
       shelfWidth: 8,
       shelfDepth: 10,
       ladderOffset: 3,
