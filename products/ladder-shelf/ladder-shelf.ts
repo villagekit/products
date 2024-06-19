@@ -3,7 +3,7 @@ import type { Params, Parts, PartsFn, Presets } from '@villagekit/design/kit'
 export const parameters = {
   width: {
     label: 'Width',
-    shortId: 'd',
+    shortId: 'w',
     type: 'number',
     min: 5,
     max: 20,

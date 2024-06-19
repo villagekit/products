@@ -2,54 +2,54 @@ import type { Params, Part, Parts, PartsFn, Presets } from '@villagekit/design/k
 
 export const parameters = {
   width: {
-    type: 'number',
     label: 'Width',
     shortId: 'w',
+    type: 'number',
     min: 20,
     max: 60,
     step: 5,
   },
   depth: {
-    type: 'number',
     label: 'Depth',
     shortId: 'd',
+    type: 'number',
     min: 20,
     max: 60,
     step: 5,
   },
   height: {
-    type: 'number',
     label: 'Height',
     shortId: 'h',
+    type: 'number',
     min: 10,
     max: 30,
     step: 5,
   },
   overhangWidth: {
-    type: 'number',
     label: 'Overhang width',
     description: 'How many grid units should the width-wise beams overhang',
     shortId: 'ol',
+    type: 'number',
     min: 0,
     max: 6,
   },
   shouldIncludePanels: {
-    type: 'boolean',
     label: 'Top panels',
     description: 'Should include panels on top',
     shortId: 'p',
+    type: 'boolean',
   },
   shouldDoublePosts: {
-    type: 'boolean',
     label: 'Double posts',
     description: 'Should the posts be doubled in depth',
     shortId: 'dp',
+    type: 'boolean',
   },
   shouldUnderSide: {
-    type: 'boolean',
     label: 'Underside',
     description: 'Should the side width-wise beams be underneath',
     shortId: 'u',
+    type: 'boolean',
   },
 } satisfies Params
 

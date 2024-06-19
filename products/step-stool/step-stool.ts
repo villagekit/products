@@ -2,42 +2,42 @@ import type { Params, Parts, PartsFn, Presets } from '@villagekit/design/kit'
 
 export const parameters = {
   numSteps: {
-    type: 'number',
     label: 'Number of steps',
     shortId: 'ns',
+    type: 'number',
     min: 2,
     max: 4,
   },
   stepDepth: {
-    type: 'number',
     label: 'Step depth',
     description: 'The depth of every step except the topmost step',
     shortId: 'sd',
+    type: 'number',
     min: 4,
     max: 10,
   },
   stepHeight: {
-    type: 'number',
     label: 'Step height',
     shortId: 'sh',
+    type: 'number',
     min: 4,
     max: 10,
   },
   stepWidth: {
-    type: 'number',
     label: 'Step width',
     shortId: 'sw',
+    type: 'number',
     min: 5,
     max: 20,
     step: 5,
   },
   topStepDepth: {
-    type: 'number',
     label: 'Top step depth',
     description: 'The depth of the topmost step',
     shortId: 'tsd',
-    max: 10,
+    type: 'number',
     min: 5,
+    max: 10,
   },
 } satisfies Params
 

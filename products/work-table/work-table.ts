@@ -2,45 +2,45 @@ import type { Params, Part, Parts, PartsFn, Presets } from '@villagekit/design/k
 
 export const parameters = {
   width: {
-    type: 'number',
     label: 'Width',
     shortId: 'w',
-    max: 60,
+    type: 'number',
     min: 10,
+    max: 60,
     step: 5,
   },
   depth: {
-    type: 'number',
     label: 'Depth',
     shortId: 'd',
-    max: 30,
+    type: 'number',
     min: 10,
+    max: 30,
     step: 10,
   },
   height: {
-    type: 'number',
     label: 'Height',
     shortId: 'h',
-    max: 30,
+    type: 'number',
     min: 8,
+    max: 30,
   },
   shouldIncludePanels: {
-    type: 'boolean',
     label: 'Top panels',
     description: 'Should include panels on top',
     shortId: 'p',
+    type: 'boolean',
   },
   hasWidthwiseBottoms: {
-    type: 'boolean',
     label: 'Width-wise bottoms',
     description: 'Should include width-wise bottom beams',
     shortId: 'bw',
+    type: 'boolean',
   },
   hasDepthwiseBottoms: {
-    type: 'boolean',
     label: 'Depth-wise bottoms',
     description: 'Should include depth-wise bottom beams',
     shortId: 'bd',
+    type: 'boolean',
   },
 } satisfies Params
 

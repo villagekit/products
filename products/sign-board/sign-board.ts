@@ -2,34 +2,34 @@ import type { Params, Part, Parts, PartsFn, Presets } from '@villagekit/design/k
 
 export const parameters = {
   boardWidth: {
-    type: 'number',
     label: 'Board width',
     shortId: 'bw',
+    type: 'number',
     min: 5,
     max: 60,
     step: 5,
   },
   boardHeight: {
-    type: 'number',
     label: 'Board height',
     shortId: 'bh',
+    type: 'number',
     min: 5,
     max: 50,
     step: 5,
   },
   legHeight: {
-    type: 'number',
     label: 'Leg height',
     description: 'The height from the ground to the bottom of the board',
     shortId: 'lh',
+    type: 'number',
     min: 5,
     max: 30,
     step: 5,
   },
   legWidth: {
-    type: 'number',
     label: 'Leg width',
     shortId: 'lw',
+    type: 'number',
     min: 5,
     max: 30,
     step: 5,

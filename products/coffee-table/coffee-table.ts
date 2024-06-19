@@ -3,26 +3,26 @@ import type { Params, Part, Parts, PartsFn, Presets } from '@villagekit/design/k
 export const parameters = {
   width: {
     label: 'Width',
-    max: 30,
-    min: 5,
     shortId: 'w',
-    step: 5,
     type: 'number',
+    min: 5,
+    max: 30,
+    step: 5,
   },
   depth: {
     label: 'Depth',
-    max: 30,
-    min: 5,
     shortId: 'd',
-    step: 5,
     type: 'number',
+    min: 5,
+    max: 30,
+    step: 5,
   },
   height: {
     label: 'Height',
-    max: 20,
-    min: 5,
     shortId: 'h',
     type: 'number',
+    min: 5,
+    max: 20,
   },
 } satisfies Params
 

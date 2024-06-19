@@ -3,25 +3,25 @@ import type { Params, Parts, PartsFn, Presets } from '@villagekit/design/kit'
 export const parameters = {
   width: {
     label: 'Width',
-    max: 45,
-    min: 15,
-    step: 5,
-    type: 'number',
     shortId: 'w',
+    type: 'number',
+    min: 15,
+    max: 45,
+    step: 5,
   },
   height: {
     label: 'Height',
-    max: 30,
-    min: 5,
-    type: 'number',
     shortId: 'h',
+    type: 'number',
+    min: 5,
+    max: 30,
   },
   shelfHeight: {
     label: 'Shelf Height',
-    max: 15,
-    min: 4,
-    type: 'number',
     shortId: 'sh',
+    type: 'number',
+    min: 4,
+    max: 15,
   },
 } satisfies Params
 

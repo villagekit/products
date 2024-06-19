@@ -34,7 +34,7 @@ export const parameters = {
   },
   boxHeight: {
     label: 'Box height',
-    shortId: 'nu',
+    shortId: 'bh',
     type: 'number',
     min: 2,
     max: 10,

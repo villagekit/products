@@ -34,8 +34,8 @@ export const parameters = {
     description: 'The height from the seat to the top of the backrest',
     shortId: 'bh',
     type: 'number',
-    max: 10,
     min: 5,
+    max: 10,
   },
 } satisfies Params
 

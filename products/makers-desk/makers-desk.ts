@@ -32,7 +32,7 @@ export const parameters = {
   },
   storageDepth: {
     label: 'Storage depth',
-    shortId: 'sw',
+    shortId: 'sd',
     type: 'number',
     min: 5,
     max: 10,
