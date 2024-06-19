@@ -80,7 +80,8 @@ export const parts: PartsFn<typeof parameters> = (parameters) => {
       height: boardHeight,
       panel: {
         x: [0, boardWidth],
-        y: 1,
+        y: -1,
+        fit: 'top',
       },
       zOffset: legHeight,
     }),
