@@ -68,8 +68,8 @@ export const parts: PartsFn<typeof parameters> = (parameters) => {
   const { seatWidth, seatDepth, seatHeight, backHeight, shouldIncludeBack } = parameters
 
   const backZBeamEndZ = shouldIncludeBack ? seatHeight + backHeight : seatHeight
-  const seatPanelStartY = shouldIncludeBack ? 1 : 0
-  const seatPanelEndY = shouldIncludeBack ? seatDepth + 1 : seatDepth
+  const seatPanelStartY = shouldIncludeBack ? -1 : 0
+  const seatPanelEndY = shouldIncludeBack ? seatDepth - 1 : seatDepth
 
   return [
     {
@@ -82,33 +82,34 @@ export const parts: PartsFn<typeof parameters> = (parameters) => {
     shouldIncludeBack && {
       type: 'gridpanel:xz',
       x: [0, seatWidth],
-      y: 1,
+      y: seatDepth - 2,
       z: [seatHeight + 1, seatHeight + 1 + backHeight],
+      fit: 'top',
     },
 
     {
       type: 'gridbeam:z',
       x: 0,
       y: 0,
-      z: [0, backZBeamEndZ],
+      z: [0, seatHeight],
     },
     {
       type: 'gridbeam:z',
       x: seatWidth - 1,
       y: 0,
-      z: [0, backZBeamEndZ],
+      z: [0, seatHeight],
     },
     {
       type: 'gridbeam:z',
       x: 0,
       y: seatDepth - 1,
-      z: [0, seatHeight],
+      z: [0, backZBeamEndZ],
     },
     {
       type: 'gridbeam:z',
       x: seatWidth - 1,
       y: seatDepth - 1,
-      z: [0, seatHeight],
+      z: [0, backZBeamEndZ],
     },
 
     {
