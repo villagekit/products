@@ -135,7 +135,6 @@ export function createPanelsY(options: CreatePanelsYOptions): Parts {
 
   return [
     range(numTenPanels).map((tenPanelIndex): Part => {
-      console.log('tenPanelIndex', tenPanelIndex)
       const y: [number, number] = [10 * tenPanelIndex, 10 * (tenPanelIndex + 1)]
 
       return panel.type === 'xy'
@@ -143,7 +142,6 @@ export function createPanelsY(options: CreatePanelsYOptions): Parts {
         : { type: 'gridpanel:yz', y, ...panel.options }
     }),
     range(numTenPanels * 2, numTenPanels * 2 + numFivePanels).map((fivePanelIndex): Part => {
-      console.log('fivePanelIndex', fivePanelIndex)
       const y: [number, number] = [5 * fivePanelIndex, 5 * (fivePanelIndex + 1)]
 
       return panel.type === 'xy'
