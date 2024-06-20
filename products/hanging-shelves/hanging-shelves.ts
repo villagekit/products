@@ -1,7 +1,9 @@
-import type { Parts } from '@villagekit/design/kit'
+import type { Parts, Plugins } from '@villagekit/design/kit'
 
 const panelShortY: [number, number] = [-2, 3]
 const panelLongY: [number, number] = [-7, 8]
+
+export const plugins: Plugins = ['smart-fasteners']
 
 export const parts: Parts = [
   post({

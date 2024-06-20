@@ -1,4 +1,4 @@
-import type { Params, PartsFn, Presets } from '@villagekit/design/kit'
+import type { Params, PartsFn, Plugins, Presets } from '@villagekit/design/kit'
 
 export const parameters = {
   poleHeight: {
@@ -61,6 +61,8 @@ export const presets: Presets<typeof parameters> = [
     },
   },
 ]
+
+export const plugins: Plugins = ['smart-fasteners']
 
 export const parts: PartsFn<typeof parameters> = (parameters) => {
   const { poleHeight, footHeight, footDepth, footWidth, hasExtension } = parameters

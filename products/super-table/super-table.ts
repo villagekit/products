@@ -1,4 +1,4 @@
-import type { Params, Part, Parts, PartsFn, Presets } from '@villagekit/design/kit'
+import type { Params, Part, Parts, PartsFn, Plugins, Presets } from '@villagekit/design/kit'
 
 export const parameters = {
   width: {
@@ -172,6 +172,8 @@ export const presets: Presets<typeof parameters> = [
     },
   },
 ]
+
+export const plugins: Plugins = ['smart-fasteners']
 
 export const parts: PartsFn<typeof parameters> = (parameters) => {
   const {
