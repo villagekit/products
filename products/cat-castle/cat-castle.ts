@@ -1,9 +1,11 @@
-import type { Parts } from '@villagekit/design/kit'
+import type { Parts, Plugins } from '@villagekit/design/kit'
 
 const castleHeight = 30
 const castleWidth = 10
 const castleDepth = 10
 const shelfOverhang = castleWidth
+
+export const plugins: Plugins = ['smart-fasteners']
 
 export const parts: Parts = [
   posts(),

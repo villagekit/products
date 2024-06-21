@@ -1,10 +1,12 @@
-import type { Parts } from '@villagekit/design/kit'
+import type { Parts, Plugins } from '@villagekit/design/kit'
 
 const backHeight = 12
 const armHeight = 8
 const seatHeight = 4
 const chairDepth = 8
 const chairWidth = 8
+
+export const plugins: Plugins = ['smart-fasteners']
 
 export const parts: Parts = [
   // front left z
