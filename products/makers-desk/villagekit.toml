@@ -4,7 +4,8 @@ label = "Makers Desk"
 description = "This modular workspace features a spacious work surface and an elevated shelf for additional storage."
 tags = [
   'furniture',
-  'desk'
+  'desk',
+  'garage'
 ]
 type = "kit"
 exports = "./makers-desk.ts"
