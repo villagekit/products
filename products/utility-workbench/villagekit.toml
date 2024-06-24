@@ -1,0 +1,11 @@
+[product]
+name = "@villagekit/utility-workbench"
+label = "Utility Workbench"
+description = "This compact workbench features dual-tier surfaces for versatile workspace organization."
+tags = [
+  'furniture',
+  'desk',
+  'garage'
+]
+type = "kit"
+exports = "./utility-workbench.ts"
