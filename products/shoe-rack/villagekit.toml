@@ -4,7 +4,8 @@ label = "Shoe Rack"
 description = "A stylish home for footwear. Configurable to suit your shoe collection."
 tags = [
   'furniture',
-  'storage'
+  'storage',
+  'bedroom'
 ]
 type = "kit"
 exports = "./shoe-rack.ts"

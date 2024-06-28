@@ -1,11 +1,12 @@
 [product]
 name = "@villagekit/makers-workbench"
-label = "Makers Workbench"
-description = "This modular workbench features a spacious work surface, an elevated shelf for tools, and a lower shelf for additional storage."
+label = "Maker Workbench"
+description = "A spacious workbench featuring a raised shelf and an additional lower platform. Ideal for makers and hobbyists, providing ample workspace and storage for tools and materials."
 tags = [
   'furniture',
   'desk',
-  'garage'
+  'garage',
+  'workbench'
 ]
 type = "kit"
 exports = "./makers-workbench.ts"

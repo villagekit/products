@@ -4,6 +4,8 @@ label = "Super Table"
 description = "A heavy-duty table, great as a big dining table or extra-strength workshop table. Configurable to suit your needs."
 tags = [
   'furniture',
+  'dining',
+  'garage',
   'table'
 ]
 type = "kit"

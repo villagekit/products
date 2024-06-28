@@ -1,7 +1,7 @@
 [product]
 name = "@villagekit/garage-workbench"
 label = "Garage Workbench"
-description = ""
+description = "A robust workbench featuring ample storage space with multiple drawers. Ideal for organizing tools and supplies, making it a practical addition to any workshop or garage."
 tags = [
   'furniture',
   'garage',

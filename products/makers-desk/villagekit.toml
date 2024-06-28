@@ -1,11 +1,13 @@
 [product]
 name = "@villagekit/makers-desk"
-label = "Makers Desk"
-description = "This modular workspace features a spacious work surface and an elevated shelf for additional storage."
+label = "Maker Desk"
+description = "A practical desk featuring a raised platform for additional workspace. Perfect for makers, crafters, and hobbyists needing a versatile and organized area for projects and tools."
 tags = [
   'furniture',
   'desk',
-  'garage'
+  'garage',
+  'office',
+  'workbench'
 ]
 type = "kit"
 exports = "./makers-desk.ts"
