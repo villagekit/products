@@ -6,6 +6,7 @@ tags = [
   'furniture',
   'desk',
   'garage',
+  'office',
   'workbench'
 ]
 type = "kit"
