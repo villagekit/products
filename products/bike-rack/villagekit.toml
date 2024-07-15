@@ -1,10 +1,10 @@
 [product]
 name = "@villagekit/bike-rack"
-label = "Bike rack"
-description = "Vertical bike rack provides a sturdy, reliable, and efficient solution for bike storage in a garage."
+label = "Bike Rack"
+description = "A vertical bike rack. Provides a sturdy, reliable, and efficient solution for bike storage in a garage."
 tags = [
   'furniture',
-  'bicycle',
+  'garage',
   'storage'
 ]
 type = "kit"

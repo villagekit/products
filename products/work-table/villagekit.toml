@@ -4,7 +4,11 @@ label = "Work Table"
 description = "A spacious working table. Ideal for arts, trades, or simply adding extra bench space."
 tags = [
   'furniture',
-  'table'
+  'desk',
+  'garage',
+  'office',
+  'table',
+  'workbench'
 ]
 type = "kit"
 exports = "./work-table.ts"
