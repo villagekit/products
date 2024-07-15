@@ -1,30 +1,91 @@
-import type { Parts } from '@villagekit/design/kit'
+import type { Params, Parts, PartsFn, Plugins, Presets } from '@villagekit/design/kit'
 
-const numUnitsX = 2
-const numUnitsY = 2
-const unitSizeX = 30
-const unitSizeY = 20
-const unitNumSupports = 2
-const height = 5
+export const parameters = {
+  unitSizeX: {
+    label: 'Unit width',
+    shortId: 'uw',
+    type: 'number',
+    min: 10,
+    max: 60,
+    step: 5,
+  },
+  unitSizeY: {
+    label: 'Unit depth',
+    shortId: 'ud',
+    type: 'number',
+    min: 10,
+    max: 30,
+    step: 5,
+  },
+  unitNumSupports: {
+    label: 'Num supports',
+    shortId: 'ns',
+    type: 'number',
+    min: 0,
+    max: 10,
+  },
+  height: {
+    label: 'Height',
+    shortId: 'h',
+    type: 'number',
+    min: 4,
+    max: 20,
+  },
+  numUnitsX: {
+    label: 'Number of units wide',
+    shortId: 'nuw',
+    type: 'number',
+    min: 1,
+    max: 4,
+  },
+  numUnitsY: {
+    label: 'Number of units deep',
+    shortId: 'nud',
+    type: 'number',
+    min: 1,
+    max: 4,
+  },
+} satisfies Params
 
-export const parts: Parts = [
-  range(numUnitsX).map(
-    (xIndex): Parts => [
-      range(numUnitsY).map(
-        (yIndex): Parts => [
-          createStageUnit({
-            sizeX: unitSizeX,
-            sizeY: unitSizeY,
-            numSupports: unitNumSupports,
-            height,
-            offsetX: xIndex * unitSizeX,
-            offsetY: yIndex * unitSizeY,
-          }),
-        ],
-      ),
-    ],
-  ),
+export const presets: Presets<typeof parameters> = [
+  {
+    id: 'default',
+    label: 'Default',
+    values: {
+      numUnitsX: 2,
+      numUnitsY: 2,
+      unitSizeX: 30,
+      unitSizeY: 20,
+      unitNumSupports: 2,
+      height: 5,
+    },
+  },
 ]
+
+export const parts: PartsFn<typeof parameters> = (parameters) => {
+  const { numUnitsX, numUnitsY, unitSizeX, unitSizeY, unitNumSupports, height } = parameters
+
+  return [
+    range(numUnitsX).map(
+      (xIndex): Parts => [
+        range(numUnitsY).map(
+          (yIndex): Parts => [
+            createStageUnit({
+              sizeX: unitSizeX,
+              sizeY: unitSizeY,
+              numSupports: unitNumSupports,
+              height,
+              offsetX: xIndex * unitSizeX,
+              offsetY: yIndex * unitSizeY,
+            }),
+          ],
+        ),
+      ],
+    ),
+  ]
+}
+
+export const plugins: Plugins = ['smart-fasteners']
 
 type StageUnitOptions = {
   sizeX: number
