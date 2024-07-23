@@ -294,15 +294,15 @@ function createPanelsY(options: CreatePanelsYOptions): Parts {
       const y: [number, number] = [10 * tenPanelIndex, 10 * (tenPanelIndex + 1)]
 
       return panel.type === 'xy'
-        ? { type: 'gridpanel:xy', y, ...panel.options }
-        : { type: 'gridpanel:yz', y, ...panel.options }
+        ? GridPanel.XY({ y, ...panel.options })
+        : GridPanel.YZ({ y, ...panel.options })
     }),
     range(numTenPanels * 2, numTenPanels * 2 + numFivePanels).map((fivePanelIndex): Part => {
       const y: [number, number] = [5 * fivePanelIndex, 5 * (fivePanelIndex + 1)]
 
       return panel.type === 'xy'
-        ? { type: 'gridpanel:xy', y, ...panel.options }
-        : { type: 'gridpanel:yz', y, ...panel.options }
+        ? GridPanel.XY({ y, ...panel.options })
+        : GridPanel.YZ({ y, ...panel.options })
     }),
   ]
 }

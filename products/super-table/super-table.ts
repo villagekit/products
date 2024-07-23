@@ -1,5 +1,6 @@
 import type { Params, Part, Parts, PartsFn, Plugins, Presets } from '@villagekit/design/kit'
 import { GridBeam } from '@villagekit/part-gridbeam/creator'
+import { GridPanel } from '@villagekit/part-gridpanel/creator'
 
 export const parameters = {
   width: {
@@ -471,12 +472,12 @@ function createPanelsX(options: CreatePanelsXOptions): Parts {
     range(numTenPanels).map((tenPanelIndex): Part => {
       const x: [number, number] = [10 * tenPanelIndex, 10 * (tenPanelIndex + 1)]
 
-      return { type: 'gridpanel:xy', x, ...panel }
+      return GridPanel.XY({ x, ...panel })
     }),
     range(numTenPanels * 2, numTenPanels * 2 + numFivePanels).map((fivePanelIndex): Part => {
       const x: [number, number] = [5 * fivePanelIndex, 5 * (fivePanelIndex + 1)]
 
-      return { type: 'gridpanel:xy', x, ...panel }
+      return GridPanel.XY({ x, ...panel })
     }),
   ]
 }
