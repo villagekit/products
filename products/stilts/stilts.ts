@@ -1,4 +1,5 @@
 import type { Params, PartsFn, Plugins, Presets } from '@villagekit/design/kit'
+import { GridBeam } from '@villagekit/part-gridbeam/creator'
 
 export const parameters = {
   poleHeight: {
@@ -70,62 +71,54 @@ export const parts: PartsFn<typeof parameters> = (parameters) => {
   const poleSpacing = 5 + footWidth * 2
 
   return [
-    {
-      type: 'gridbeam:z',
+    GridBeam.Z({
       x: 0,
       y: 0,
       z: [0, poleHeight],
-    },
-    {
-      type: 'gridbeam:z',
+    }),
+    GridBeam.Z({
       x: poleSpacing,
       y: 0,
       z: [0, poleHeight],
-    },
+    }),
 
     hasExtension && [
-      {
-        type: 'gridbeam:z',
+      GridBeam.Z({
         x: 0,
         y: -1,
         z: [footHeight, footHeight + poleHeight],
-      },
-      {
-        type: 'gridbeam:z',
+      }),
+      GridBeam.Z({
         x: poleSpacing,
         y: -1,
         z: [footHeight, footHeight + poleHeight],
-      },
+      }),
     ],
 
-    {
-      type: 'gridbeam:x',
+    GridBeam.X({
       x: [0, footWidth + 1],
       y: -1,
       z: footHeight - 1,
-    },
-    {
-      type: 'gridbeam:x',
+    }),
+    GridBeam.X({
       x: [poleSpacing - footWidth, poleSpacing + 1],
       y: -1,
       z: footHeight - 1,
-    },
+    }),
 
     Array.from(Array(footWidth).keys()).map((i) => {
       const offset = Math.floor(footDepth / 2)
       return [
-        {
-          type: 'gridbeam:y',
+        GridBeam.Y({
           x: 1 + i,
           y: [offset, -footDepth + offset],
           z: footHeight,
-        },
-        {
-          type: 'gridbeam:y',
+        }),
+        GridBeam.Y({
           x: poleSpacing - 1 - i,
           y: [offset, -footDepth + offset],
           z: footHeight,
-        },
+        }),
       ]
     }),
   ]

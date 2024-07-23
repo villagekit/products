@@ -1,4 +1,5 @@
 import type { Params, Parts, PartsFn, Plugins, Presets } from '@villagekit/design/kit'
+import { GridBeam } from '@villagekit/part-gridbeam/creator'
 
 export const parameters = {
   width: {
@@ -86,30 +87,26 @@ export const parts: PartsFn<typeof parameters> = (parameters) => {
   const numShelves = Math.max(Math.floor(height / shelfHeight), 1)
 
   return [
-    {
-      type: 'gridbeam:z',
+    GridBeam.Z({
       x: 0,
       y: 0,
       z: [0, height],
-    },
-    {
-      type: 'gridbeam:z',
+    }),
+    GridBeam.Z({
       x: width - 1,
       y: 0,
       z: [0, height],
-    },
-    {
-      type: 'gridbeam:z',
+    }),
+    GridBeam.Z({
       x: 0,
       y: depth - 1,
       z: [0, height],
-    },
-    {
-      type: 'gridbeam:z',
+    }),
+    GridBeam.Z({
       x: width - 1,
       y: depth - 1,
       z: [0, height],
-    },
+    }),
 
     range(numShelves).map((shelfIndex): Parts => {
       const z = height - shelfIndex * (shelfHeight + 1) - 1
@@ -119,37 +116,32 @@ export const parts: PartsFn<typeof parameters> = (parameters) => {
       }
 
       return [
-        {
-          type: 'gridbeam:x',
+        GridBeam.X({
           x: [0, width],
           y: 1,
           z,
-        },
-        {
-          type: 'gridbeam:x',
+        }),
+        GridBeam.X({
           x: [0, width],
           y: 3,
           z,
-        },
-        {
-          type: 'gridbeam:x',
+        }),
+        GridBeam.X({
           x: [0, width],
           y: 5,
           z,
-        },
+        }),
 
-        {
-          type: 'gridbeam:y',
+        GridBeam.Y({
           x: 1 + 0,
           y: [0, depth],
           z: z - 1,
-        },
-        {
-          type: 'gridbeam:y',
+        }),
+        GridBeam.Y({
           x: width - 2 - 0,
           y: [0, depth],
           z: z - 1,
-        },
+        }),
       ]
     }),
 
@@ -169,27 +161,24 @@ export const parts: PartsFn<typeof parameters> = (parameters) => {
           }
 
           return [
-            {
-              type: 'gridbeam:y',
+            GridBeam.Y({
               x: legSupportOffset + legZSupportXNudge,
               y: [0, depth],
               z: z - 1,
-            },
+            }),
           ]
         }),
 
-        {
-          type: 'gridbeam:z',
+        GridBeam.Z({
           x: legSupportOffset,
           y: 0,
           z: [0, height],
-        },
-        {
-          type: 'gridbeam:z',
+        }),
+        GridBeam.Z({
           x: legSupportOffset,
           y: depth - 1,
           z: [0, height],
-        },
+        }),
       ]
     }),
   ]

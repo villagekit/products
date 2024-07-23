@@ -1,4 +1,6 @@
 import type { Params, Parts, PartsFn, Plugins, Presets } from '@villagekit/design/kit'
+import { GridBeam } from '@villagekit/part-gridbeam/creator'
+import { GridPanel } from '@villagekit/part-gridpanel/creator'
 
 export const parameters = {
   width: {
@@ -73,33 +75,29 @@ export const parts: PartsFn<typeof parameters> = (parameters) => {
 
   return [
     // front left z
-    {
-      type: 'gridbeam:z',
+    GridBeam.Z({
       x: 0,
       y: 0,
       z: [0, height],
-    },
+    }),
     // front right z
-    {
-      type: 'gridbeam:z',
+    GridBeam.Z({
       x: width - 1,
       y: 0,
       z: [0, height],
-    },
+    }),
     // front left z
-    {
-      type: 'gridbeam:z',
+    GridBeam.Z({
       x: 0,
       y: depth - 1,
       z: [0, height],
-    },
+    }),
     // front left z
-    {
-      type: 'gridbeam:z',
+    GridBeam.Z({
       x: width - 1,
       y: depth - 1,
       z: [0, height],
-    },
+    }),
 
     // ladder rungs
     range(numRungs).map((rungIndex) => ({
@@ -109,41 +107,36 @@ export const parts: PartsFn<typeof parameters> = (parameters) => {
       z: (1 + rungIndex) * rungSpacing - 1,
     })),
     // top rung
-    {
-      type: 'gridbeam:y',
+    GridBeam.Y({
       x: -1,
       y: [0, depth],
       z: height - 1,
-    },
+    }),
 
     // shelves
     range(numShelves).map((shelfIndex) => [
-      {
-        type: 'gridbeam:x',
+      GridBeam.X({
         x: [0, width],
         y: 1,
         z: initialShelfOffset + shelfIndex * shelfSpacing,
-      },
-      {
-        type: 'gridbeam:x',
+      }),
+      GridBeam.X({
         x: [0, width],
         y: depth - 2,
         z: initialShelfOffset + shelfIndex * shelfSpacing,
-      },
-      {
-        type: 'gridpanel:xy',
+      }),
+      GridPanel.XY({
         x: [1, width - 1],
         y: [0, depth],
         z: 1 + initialShelfOffset + shelfIndex * shelfSpacing,
-      },
+      }),
     ]),
     // top shelf
-    {
-      type: 'gridpanel:xy',
+    GridPanel.XY({
       x: [-1, width],
       y: [0, depth],
       z: height,
-    },
+    }),
   ] satisfies Parts
 }
 

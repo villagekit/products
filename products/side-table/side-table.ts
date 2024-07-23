@@ -1,4 +1,5 @@
 import type { Params, Part, Parts, PartsFn, Plugins, Presets } from '@villagekit/design/kit'
+import { GridBeam } from '@villagekit/part-gridbeam/creator'
 
 export const parameters = {
   width: {
@@ -125,18 +126,16 @@ export const parts: PartsFn<typeof parameters> = (parameters) => {
         },
       }),
 
-      {
-        type: 'gridbeam:y',
+      GridBeam.Y({
         x: 1,
         y: [0, depth],
         z: shelfHeight - 1,
-      },
-      {
-        type: 'gridbeam:y',
+      }),
+      GridBeam.Y({
         x: width,
         y: [0, depth],
         z: shelfHeight - 1,
-      },
+      }),
     ]
   }
 
@@ -167,30 +166,26 @@ export const parts: PartsFn<typeof parameters> = (parameters) => {
           }),
         ]
       : [
-          {
-            type: 'gridbeam:z',
+          GridBeam.Z({
             x: usePanelsForSides ? 1 : 0,
             y: depth - 1,
             z: [0, height],
-          },
-          {
-            type: 'gridbeam:z',
+          }),
+          GridBeam.Z({
             x: usePanelsForSides ? 1 : 0,
             y: 0,
             z: [0, height],
-          },
-          {
-            type: 'gridbeam:z',
+          }),
+          GridBeam.Z({
             x: usePanelsForSides ? width : width + 1,
             y: depth - 1,
             z: [0, height],
-          },
-          {
-            type: 'gridbeam:z',
+          }),
+          GridBeam.Z({
             x: usePanelsForSides ? width : width + 1,
             y: 0,
             z: [0, height],
-          },
+          }),
         ],
 
     createShelf(shelfHeight),

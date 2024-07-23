@@ -1,4 +1,6 @@
 import type { Params, Parts, PartsFn, Plugins, Presets } from '@villagekit/design/kit'
+import { GridBeam } from '@villagekit/part-gridbeam/creator'
+import { GridPanel } from '@villagekit/part-gridpanel/creator'
 
 export const parameters = {
   width: {
@@ -67,141 +69,122 @@ export const parts: PartsFn<typeof parameters> = (parameters) => {
 
   return [
     // front left z
-    {
-      type: 'gridbeam:z',
+    GridBeam.Z({
       x: 0,
       y: 0,
       z: [0, workHeight],
-    },
+    }),
     // back left z
-    {
-      type: 'gridbeam:z',
+    GridBeam.Z({
       x: 0,
       y: depth - 1,
       z: [0, topShelfHeight],
-    },
+    }),
     // front right z
-    {
-      type: 'gridbeam:z',
+    GridBeam.Z({
       x: width - 1,
       y: 0,
       z: [0, workHeight],
-    },
+    }),
     // back right z
-    {
-      type: 'gridbeam:z',
+    GridBeam.Z({
       x: width - 1,
       y: depth - 1,
       z: [0, topShelfHeight],
-    },
+    }),
 
     // bottom shelf left y
-    {
-      type: 'gridbeam:y',
+    GridBeam.Y({
       x: 1,
       y: [0, depth],
       z: bottomShelfHeight - 2,
-    },
+    }),
     // bottom shelf right y
-    {
-      type: 'gridbeam:y',
+    GridBeam.Y({
       x: width - 2,
       y: [0, depth],
       z: bottomShelfHeight - 2,
-    },
+    }),
     // bottom shelf front x
-    {
-      type: 'gridbeam:x',
+    GridBeam.X({
       x: [0, width],
       y: 1,
       z: bottomShelfHeight - 1,
-    },
+    }),
     // bottom shelf back x
-    {
-      type: 'gridbeam:x',
+    GridBeam.X({
       x: [0, width],
       y: depth - 2,
       z: bottomShelfHeight - 1,
-    },
+    }),
     // bottom shelf panel
-    {
-      type: 'gridpanel:xy',
+    GridPanel.XY({
       x: [0, width],
       y: [1, depth - 1],
       z: bottomShelfHeight,
-    },
+    }),
 
     // work left y
-    {
-      type: 'gridbeam:y',
+    GridBeam.Y({
       x: 1,
       y: [0, depth],
       z: workHeight - 2,
-    },
+    }),
     // work right y
-    {
-      type: 'gridbeam:y',
+    GridBeam.Y({
       x: width - 2,
       y: [0, depth],
       z: workHeight - 2,
-    },
+    }),
     // work front x
-    {
-      type: 'gridbeam:x',
+    GridBeam.X({
       x: [0, width],
       y: 1,
       z: workHeight - 1,
-    },
+    }),
     // work back x
-    {
-      type: 'gridbeam:x',
+    GridBeam.X({
       x: [0, width],
       y: depth - 2,
       z: workHeight - 1,
-    },
+    }),
     // work panel
-    {
-      type: 'gridpanel:xy',
+    GridPanel.XY({
       x: [0, width],
       y: [1, depth - 1],
       z: workHeight,
-    },
+    }),
 
     // top shelf back x
-    {
-      type: 'gridbeam:x',
+    GridBeam.X({
       x: [0, width],
       y: depth - 2,
       z: topShelfHeight - 2,
-    },
+    }),
     // top shelf left y
-    {
-      type: 'gridbeam:y',
+    GridBeam.Y({
       x: 1,
       y: [depth - 1, depth - 1 - topShelfDepth],
       z: topShelfHeight - 1,
-    },
+    }),
     // top shelf middle y
-    {
-      type: 'gridbeam:y',
+    GridBeam.Y({
       x: Math.floor(width / 2),
       y: [depth - 1, depth - 1 - topShelfDepth],
       z: topShelfHeight - 1,
-    },
+    }),
     // top shelf right y
-    {
-      type: 'gridbeam:y',
+    GridBeam.Y({
       x: width - 2,
       y: [depth - 1, depth - 1 - topShelfDepth],
       z: topShelfHeight - 1,
-    },
+    }),
     // top shelf panel
-    {
-      type: 'gridpanel:xy',
+    GridPanel.XY({
       x: [0, width],
       y: [depth - 1, depth - 1 - topShelfDepth],
       z: topShelfHeight,
-    },
+    }),
   ] satisfies Parts
 }
 

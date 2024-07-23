@@ -1,4 +1,6 @@
 import type { Params, Parts, PartsFn, Plugins, Presets } from '@villagekit/design/kit'
+import { GridBeam } from '@villagekit/part-gridbeam/creator'
+import { GridPanel } from '@villagekit/part-gridpanel/creator'
 
 export const parameters = {
   width: {
@@ -85,48 +87,42 @@ function posts(options: PostsOptions): Parts {
 
   return [
     // front left
-    {
-      type: 'gridbeam:z',
+    GridBeam.Z({
       x: 0,
       y: 0,
       z: [0, height],
-    },
+    }),
     // front right
-    {
-      type: 'gridbeam:z',
+    GridBeam.Z({
       x: width - 1,
       y: 0,
       z: [0, height],
-    },
+    }),
     // back left
-    {
-      type: 'gridbeam:z',
+    GridBeam.Z({
       x: 0,
       y: depth - 1,
       z: [0, height],
-    },
+    }),
     // back right
-    {
-      type: 'gridbeam:z',
+    GridBeam.Z({
       x: width - 1,
       y: depth - 1,
       z: [0, height],
-    },
+    }),
 
     // supports
     mapSupports({ width }, ({ postSupportOffset }) => [
-      {
-        type: 'gridbeam:z',
+      GridBeam.Z({
         x: postSupportOffset,
         y: 0,
         z: [0, height],
-      },
-      {
-        type: 'gridbeam:z',
+      }),
+      GridBeam.Z({
         x: postSupportOffset,
         y: depth - 1,
         z: [0, height],
-      },
+      }),
     ]),
   ]
 }
@@ -142,48 +138,42 @@ function shelf(options: ShelfOptions): Parts {
 
   return [
     // left y
-    {
-      type: 'gridbeam:y',
+    GridBeam.Y({
       x: 1,
       y: [0, depth],
       z: z - 2,
-    },
+    }),
     // right y
-    {
-      type: 'gridbeam:y',
+    GridBeam.Y({
       x: width - 2,
       y: [0, depth],
       z: z - 2,
-    },
+    }),
     // front x
-    {
-      type: 'gridbeam:x',
+    GridBeam.X({
       x: [0, width],
       y: 1,
       z: z - 1,
-    },
+    }),
     // back x
-    {
-      type: 'gridbeam:x',
+    GridBeam.X({
       x: [0, width],
       y: depth - 2,
       z: z - 1,
-    },
+    }),
     // panel
-    {
-      type: 'gridpanel:xy',
+    GridPanel.XY({
       x: [0, width],
       y: [1, depth - 1],
       z: z,
-    },
+    }),
 
     mapSupports({ width }, ({ postSupportOffset, postZSupportXNudge }) => [
-      {
-        type: 'gridbeam:y',
+      GridBeam.Y({
         x: postSupportOffset + postZSupportXNudge,
         y: [0, depth],
         z: z - 2,
-      },
+      }),
     ]),
   ]
 }

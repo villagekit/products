@@ -1,4 +1,6 @@
 import type { Params, Parts, PartsFn, Plugins, Presets } from '@villagekit/design/kit'
+import { GridBeam } from '@villagekit/part-gridbeam/creator'
+import { GridPanel } from '@villagekit/part-gridpanel/creator'
 
 export const parameters = {
   height: {
@@ -83,12 +85,11 @@ export const parts: PartsFn<typeof parameters> = (parameters) => {
   const numShelves = Math.ceil((height - initialShelfOffset) / shelfSpacing)
 
   return [
-    {
-      type: 'gridbeam:z',
+    GridBeam.Z({
       x: 0,
       y: 0,
       z: [0, height],
-    },
+    }),
 
     range(numShelves).map((shelfIndex) =>
       shelf({
@@ -119,51 +120,45 @@ function shelf(options: ShelfOptions): Parts {
   switch (ladderAlignment) {
     case 'left':
       return [
-        {
-          type: 'gridbeam:x',
+        GridBeam.X({
           x: [-1, 1],
           y: -1,
           z: z - 2,
-        },
-        {
-          type: 'gridbeam:y',
+        }),
+        GridBeam.Y({
           x: -1,
           y: [0, -shelfDepth],
           z: z - 1,
-        },
-        {
-          type: 'gridpanel:xy',
+        }),
+        GridPanel.XY({
           x: [
             Math.floor((-1 / 2) * shelfWidth) - ladderOffset,
             Math.ceil((1 / 2) * shelfWidth) - ladderOffset,
           ],
           y: [-1, -1 - shelfDepth],
           z: z,
-        },
+        }),
       ]
     case 'right':
       return [
-        {
-          type: 'gridbeam:x',
+        GridBeam.X({
           x: [0, 2],
           y: -1,
           z: z - 2,
-        },
-        {
-          type: 'gridbeam:y',
+        }),
+        GridBeam.Y({
           x: 1,
           y: [0, -shelfDepth],
           z: z - 1,
-        },
-        {
-          type: 'gridpanel:xy',
+        }),
+        GridPanel.XY({
           x: [
             Math.floor((-1 / 2) * shelfWidth) + ladderOffset,
             Math.ceil((1 / 2) * shelfWidth) + ladderOffset,
           ],
           y: [-1, -1 - shelfDepth],
           z: z,
-        },
+        }),
       ]
   }
 }

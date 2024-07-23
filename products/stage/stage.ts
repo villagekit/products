@@ -1,4 +1,6 @@
 import type { Params, Parts, PartsFn, Plugins, Presets } from '@villagekit/design/kit'
+import { GridBeam } from '@villagekit/part-gridbeam/creator'
+import { GridPanel } from '@villagekit/part-gridpanel/creator'
 
 export const parameters = {
   unitSizeX: {
@@ -101,54 +103,38 @@ function createStageUnit(options: StageUnitOptions): Parts {
 
   const parts = [
     // left front beam z
-    { type: 'gridbeam:z', x: 1, y: 0, z: [0, height] },
+    GridBeam.Z({ x: 1, y: 0, z: [0, height] }),
     // left back beam z
-    { type: 'gridbeam:z', x: sizeX - 2, y: 0, z: [0, height] },
+    GridBeam.Z({ x: sizeX - 2, y: 0, z: [0, height] }),
     // right front beam z
-    { type: 'gridbeam:z', x: 1, y: sizeY - 1, z: [0, height] },
+    GridBeam.Z({ x: 1, y: sizeY - 1, z: [0, height] }),
     // right front beam z
-    { type: 'gridbeam:z', x: sizeX - 2, y: sizeY - 1, z: [0, height] },
+    GridBeam.Z({ x: sizeX - 2, y: sizeY - 1, z: [0, height] }),
 
     // front beam x
-    { type: 'gridbeam:x', x: [0, sizeX], y: 1, z: height - 1 },
+    GridBeam.X({ x: [0, sizeX], y: 1, z: height - 1 }),
     // back beam x
-    { type: 'gridbeam:x', x: [0, sizeX], y: sizeY - 2, z: height - 1 },
+    GridBeam.X({ x: [0, sizeX], y: sizeY - 2, z: height - 1 }),
 
     // left beam y
-    { type: 'gridbeam:y', x: 0, y: [0, sizeY], z: height - 2 },
+    GridBeam.Y({ x: 0, y: [0, sizeY], z: height - 2 }),
     // right beam y
-    { type: 'gridbeam:y', x: sizeX - 1, y: [0, sizeY], z: height - 2 },
+    GridBeam.Y({ x: sizeX - 1, y: [0, sizeY], z: height - 2 }),
 
     // supports
     range(numSupports).map((supportIndex) => {
       const supportOffsetMultiplier = 1 / (numSupports + 1)
       const supportOffset = Math.round(supportOffsetMultiplier * sizeY * (supportIndex + 1)) - 1
-      return { type: 'gridbeam:x', x: [0, sizeX], y: supportOffset, z: height - 1 }
+      return GridBeam.X({ x: [0, sizeX], y: supportOffset, z: height - 1 })
     }),
 
     // top panel
-    { type: 'gridpanel:xy', x: [0, sizeX], y: [0, sizeY], z: height },
+    GridPanel.XY({ x: [0, sizeX], y: [0, sizeY], z: height }),
   ] satisfies Parts
 
   return parts.map(function offsetPart(part): Parts {
     if (Array.isArray(part)) return part.map(offsetPart)
-
-    switch (part.type) {
-      case 'gridbeam:x':
-        return [{ ...part, x: [part.x[0] + offsetX, part.x[1] + offsetX], y: part.y + offsetY }]
-      case 'gridbeam:y':
-        return [{ ...part, x: part.x + offsetX, y: [part.y[0] + offsetY, part.y[1] + offsetY] }]
-      case 'gridbeam:z':
-        return [{ ...part, x: part.x + offsetX, y: part.y + offsetY }]
-      case 'gridpanel:xy':
-        return [
-          {
-            ...part,
-            x: [part.x[0] + offsetX, part.x[1] + offsetX],
-            y: [part.y[0] + offsetY, part.y[1] + offsetY],
-          },
-        ]
-    }
+    return part.translate([offsetX, offsetY, 0])
   })
 }
 

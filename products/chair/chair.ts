@@ -1,4 +1,6 @@
 import type { Params, Parts, PartsFn, Plugins, Presets } from '@villagekit/design/kit'
+import { GridBeam } from '@villagekit/part-gridbeam/creator'
+import { GridPanel } from '@villagekit/part-gridpanel/creator'
 
 export const parameters = {
   seatWidth: {
@@ -74,70 +76,61 @@ export const parts: PartsFn<typeof parameters> = (parameters) => {
   const seatPanelEndY = shouldIncludeBack ? seatDepth - 1 : seatDepth
 
   return [
-    {
-      type: 'gridpanel:xy',
+    GridPanel.XY({
       x: [0, seatWidth],
       y: [seatPanelStartY, seatPanelEndY],
       z: seatHeight,
-    },
+    }),
 
-    shouldIncludeBack && {
-      type: 'gridpanel:xz',
-      x: [0, seatWidth],
-      y: seatDepth - 2,
-      z: [seatHeight + 1, seatHeight + 1 + backHeight],
-      fit: 'top',
-    },
+    shouldIncludeBack &&
+      GridPanel.XZ({
+        x: [0, seatWidth],
+        y: seatDepth - 2,
+        z: [seatHeight + 1, seatHeight + 1 + backHeight],
+        fit: 'top',
+      }),
 
-    {
-      type: 'gridbeam:z',
+    GridBeam.Z({
       x: 0,
       y: 0,
       z: [0, seatHeight],
-    },
-    {
-      type: 'gridbeam:z',
+    }),
+    GridBeam.Z({
       x: seatWidth - 1,
       y: 0,
       z: [0, seatHeight],
-    },
-    {
-      type: 'gridbeam:z',
+    }),
+    GridBeam.Z({
       x: 0,
       y: seatDepth - 1,
       z: [0, backZBeamEndZ],
-    },
-    {
-      type: 'gridbeam:z',
+    }),
+    GridBeam.Z({
       x: seatWidth - 1,
       y: seatDepth - 1,
       z: [0, backZBeamEndZ],
-    },
+    }),
 
-    {
-      type: 'gridbeam:x',
+    GridBeam.X({
       x: [0, seatWidth],
       y: 1,
       z: seatHeight - 2,
-    },
-    {
-      type: 'gridbeam:x',
+    }),
+    GridBeam.X({
       x: [0, seatWidth],
       y: seatDepth - 2,
       z: seatHeight - 2,
-    },
+    }),
 
-    {
-      type: 'gridbeam:y',
+    GridBeam.Y({
       x: 1,
       y: [0, seatDepth],
       z: seatHeight - 1,
-    },
-    {
-      type: 'gridbeam:y',
+    }),
+    GridBeam.Y({
       x: seatWidth - 2,
       y: [0, seatDepth],
       z: seatHeight - 1,
-    },
+    }),
   ] satisfies Parts
 }

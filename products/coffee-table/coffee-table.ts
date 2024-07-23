@@ -1,4 +1,5 @@
 import type { Params, Part, Parts, PartsFn, Plugins, Presets } from '@villagekit/design/kit'
+import { GridBeam } from '@villagekit/part-gridbeam/creator'
 
 export const parameters = {
   width: {
@@ -55,56 +56,48 @@ export const parts: PartsFn<typeof parameters> = (parameters) => {
       },
     }),
 
-    {
-      type: 'gridbeam:z',
+    GridBeam.Z({
       x: 1,
       y: 1,
       z: [0, height],
-    },
-    {
-      type: 'gridbeam:z',
+    }),
+    GridBeam.Z({
       x: width - 2,
       y: 1,
       z: [0, height],
-    },
-    {
-      type: 'gridbeam:z',
+    }),
+    GridBeam.Z({
       x: 1,
       y: depth - 2,
       z: [0, height],
-    },
-    {
-      type: 'gridbeam:z',
+    }),
+    GridBeam.Z({
       x: width - 2,
       y: depth - 2,
       z: [0, height],
-    },
+    }),
 
-    {
-      type: 'gridbeam:x',
+    GridBeam.X({
       x: [0, width],
       y: 0,
       z: height - 2,
-    },
-    {
-      type: 'gridbeam:x',
+    }),
+    GridBeam.X({
       x: [0, width],
       y: depth - 1,
       z: height - 2,
-    },
+    }),
 
-    {
-      type: 'gridbeam:y',
+    GridBeam.Y({
       x: 0,
       y: [0, depth],
       z: height - 1,
-    },
-    {
-      type: 'gridbeam:y',
+    }),
+    GridBeam.Y({
       x: width - 1,
       y: [0, depth],
       z: height - 1,
-    },
+    }),
   ] satisfies Parts
 }
 

@@ -1,4 +1,6 @@
 import type { Params, Parts, PartsFn, Plugins, Presets } from '@villagekit/design/kit'
+import { GridBeam } from '@villagekit/part-gridbeam/creator'
+import { GridPanel } from '@villagekit/part-gridpanel/creator'
 
 type MattressSizeName =
   | 'single'
@@ -153,13 +155,13 @@ export const parts: PartsFn<typeof parameters> = (parameters) => {
   const postsWidth = shouldDoublePosts ? 2 : 1
 
   return [
-    shouldIncludePanel && {
-      type: 'gridpanel:xy',
-      x: [0, length],
-      y: [0, width],
-      z: height,
-      holes: false,
-    },
+    shouldIncludePanel &&
+      GridPanel.XY({
+        x: [0, length],
+        y: [0, width],
+        z: height,
+        holes: false,
+      }),
 
     /* z-posts */
     createZPost({
@@ -358,12 +360,11 @@ function createZPost(options: ZPostOptions): Parts {
   const { x, y, height, shouldDoublePosts, doublePlacement } = options
 
   return [
-    {
-      type: 'gridbeam:z',
+    GridBeam.Z({
       x,
       y,
       z: [0, height],
-    },
+    }),
 
     shouldDoublePosts &&
       (doublePlacement === 'end'
@@ -395,12 +396,11 @@ function createXFrame(options: XFrameOptions): Parts {
   const z = shouldUnderSide ? height - 3 : height - 1
 
   return [
-    {
-      type: 'gridbeam:x',
+    GridBeam.X({
       x: [0, length],
       y,
       z,
-    },
+    }),
   ]
 }
 
@@ -414,12 +414,11 @@ function createYFrame(options: YFrameOptions): Parts {
   const { x, width, height } = options
 
   return [
-    {
-      type: 'gridbeam:y',
+    GridBeam.Y({
       x,
       y: [0, width],
       z: height - 2,
-    },
+    }),
   ]
 }
 
