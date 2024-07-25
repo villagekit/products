@@ -5,7 +5,8 @@
     "paths": {
       "@villagekit/design/kit": ["../villagekit/core/design/src/kit"],
       "@villagekit/part-gridbeam/creator": ["../villagekit/parts/gridbeam/src/creator"],
-      "@villagekit/part-gridpanel/creator": ["../villagekit/parts/gridpanel/src/creator"]
+      "@villagekit/part-gridpanel/creator": ["../villagekit/parts/gridpanel/src/creator"],
+      "@villagekit/part-fastener/creator": ["../villagekit/parts/fastener/src/creator"]
     }
   },
   "exclude": ["node_modules"]

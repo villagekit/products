@@ -1,0 +1,9 @@
+[product]
+name = "@villagekit/1-test"
+label = "1 test"
+description = ""
+tags = [
+  'test'
+]
+type = "kit"
+exports = "./1-test.ts"
