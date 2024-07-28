@@ -100,12 +100,13 @@ export const parts: PartsFn<typeof parameters> = (parameters) => {
     }),
 
     // ladder rungs
-    range(numRungs).map((rungIndex) => ({
-      type: 'gridbeam:y',
-      x: -1,
-      y: [0, depth],
-      z: (1 + rungIndex) * rungSpacing - 1,
-    })),
+    range(numRungs).map((rungIndex) =>
+      GridBeam.Y({
+        x: -1,
+        y: [0, depth],
+        z: (1 + rungIndex) * rungSpacing - 1,
+      }),
+    ),
     // top rung
     GridBeam.Y({
       x: -1,

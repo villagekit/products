@@ -57,8 +57,9 @@ export const parts: Parts = [
   // back panel
   GridPanel.XZ({
     x: [1, chairWidth - 1],
-    y: chairDepth,
+    y: chairDepth - 1,
     z: [backHeight - 2, backHeight + 1],
+    fit: 'top',
   }),
 
   // bottom left y
