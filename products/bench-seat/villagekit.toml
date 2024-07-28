@@ -1,0 +1,11 @@
+[product]
+name = "@villagekit/bench-seat"
+label = "Bench Seat"
+description = "A slatted bench seat, ideal for both indoor and outdoor settings. Provides comfortable seating for multiple people and enhances any space with its minimalist design."
+tags = [
+  'furniture',
+  'seating',
+  'dining'
+]
+type = "kit"
+exports = "./bench-seat.ts"
