@@ -51,19 +51,6 @@ export const parts: PartsFn<typeof parameters> = (parameters) => {
         y: 2 * depthIndex,
         z: seatHeight - 1,
       },
-
-      {
-        type: 'gridbeam:z',
-        x: 0,
-        y: 2 * depthIndex + 1,
-        z: [0, seatHeight],
-      },
-      {
-        type: 'gridbeam:z',
-        x: seatWidth - 1,
-        y: 2 * depthIndex + 1,
-        z: [0, seatHeight],
-      },
     ]),
 
     seatDepth % 2 === 1 && {
@@ -84,6 +71,31 @@ export const parts: PartsFn<typeof parameters> = (parameters) => {
       x: seatWidth - 2,
       y: [1, seatDepth - 1],
       z: seatHeight - 2,
+    },
+
+    {
+      type: 'gridbeam:z',
+      x: 0,
+      y: 1,
+      z: [0, seatHeight],
+    },
+    {
+      type: 'gridbeam:z',
+      x: seatWidth - 1,
+      y: 1,
+      z: [0, seatHeight],
+    },
+    {
+      type: 'gridbeam:z',
+      x: 0,
+      y: seatDepth - 2,
+      z: [0, seatHeight],
+    },
+    {
+      type: 'gridbeam:z',
+      x: seatWidth - 1,
+      y: seatDepth - 2,
+      z: [0, seatHeight],
     },
   ]
 }
