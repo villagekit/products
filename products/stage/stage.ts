@@ -134,7 +134,9 @@ function createStageUnit(options: StageUnitOptions): Parts {
 
   return parts.map(function offsetPart(part): Parts {
     if (Array.isArray(part)) return part.map(offsetPart)
-    return part.translate([offsetX, offsetY, 0])
+    // TODO do this better
+    const gridLengthInMeters = 0.04
+    return part.translate([offsetX * gridLengthInMeters, offsetY * gridLengthInMeters, 0])
   })
 }
 
