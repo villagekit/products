@@ -1,0 +1,11 @@
+[product]
+name = "@villagekit/cesca-chair"
+label = "Cesca Chair"
+description = "Inspired by the Cesca chair with a minimalist design featuring a slatted seat and backrest. Ideal for desk or dining use, providing comfortable and durable seating in any setting."
+tags = [
+  'furniture',
+  'seating',
+  'dining'
+]
+type = "kit"
+exports = "./cesca-chair.ts"
