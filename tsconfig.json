@@ -3,7 +3,9 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@villagekit/design/kit": ["../villagekit/core/design/src/kit"]
+      "@villagekit/design/kit": ["../villagekit/core/design/src/kit"],
+      "@villagekit/part-gridbeam/creator": ["../villagekit/parts/gridbeam/src/creator"],
+      "@villagekit/part-gridpanel/creator": ["../villagekit/parts/gridpanel/src/creator"]
     }
   },
   "exclude": ["node_modules"]

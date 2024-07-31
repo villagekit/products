@@ -1,4 +1,6 @@
 import type { Parts, Plugins } from '@villagekit/design/kit'
+import { GridBeam } from '@villagekit/part-gridbeam/creator'
+import { GridPanel } from '@villagekit/part-gridpanel/creator'
 
 const shelfWidth = 10
 const shelfDepth = 8
@@ -120,12 +122,11 @@ function posts(options: PostOptions): Parts {
   return [
     xValues.map((x) => [
       yValues.map((y) => [
-        {
-          type: 'gridbeam:z',
+        GridBeam.Z({
           x,
           y,
           z: [0, height],
-        },
+        }),
       ]),
     ]),
   ]
@@ -143,73 +144,64 @@ function level(options: LevelOptions): Parts {
   const { x, y, z, firstBeam, secondBeam } = options
 
   return [
-    {
-      type: 'gridpanel:xy',
+    GridPanel.XY({
       x,
       y,
       z,
       fit: 'bottom',
-    },
+    }),
 
     firstBeam === 'x'
       ? [
-          {
-            type: 'gridbeam:x',
+          GridBeam.X({
             x,
             y: y[0],
             z: z - 1,
-          },
-          {
-            type: 'gridbeam:x',
+          }),
+          GridBeam.X({
             x,
             y: y[1] - 1,
             z: z - 1,
-          },
+          }),
         ]
       : [
-          {
-            type: 'gridbeam:y',
+          GridBeam.Y({
             x: x[0],
             y,
             z: z - 1,
-          },
-          {
-            type: 'gridbeam:y',
+          }),
+          GridBeam.Y({
             x: x[1] - 1,
             y,
             z: z - 1,
-          },
+          }),
         ],
 
     secondBeam === 'x'
       ? [
-          {
-            type: 'gridbeam:x',
+          GridBeam.X({
             x: [x[0] - 1, x[1] + 1],
             y: y[0] + 1,
             z: z - 2,
-          },
-          {
-            type: 'gridbeam:x',
+          }),
+          GridBeam.X({
             x: [x[0] - 1, x[1] + 1],
             y: y[1] - 2,
             z: z - 2,
-          },
+          }),
         ]
       : secondBeam === 'y'
         ? [
-            {
-              type: 'gridbeam:y',
+            GridBeam.Y({
               x: x[0] + 1,
               y: [y[0] - 1, y[1] + 1],
               z: z - 2,
-            },
-            {
-              type: 'gridbeam:y',
+            }),
+            GridBeam.Y({
               x: x[1] - 2,
               y: [y[0] - 1, y[1] + 1],
               z: z - 2,
-            },
+            }),
           ]
         : null,
   ]

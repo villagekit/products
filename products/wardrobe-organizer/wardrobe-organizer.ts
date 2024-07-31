@@ -1,4 +1,6 @@
 import type { Params, Part, Parts, PartsFn, Plugins, Presets } from '@villagekit/design/kit'
+import { GridBeam } from '@villagekit/part-gridbeam/creator'
+import { GridPanel } from '@villagekit/part-gridpanel/creator'
 
 export const parameters = {
   width: {
@@ -109,18 +111,16 @@ export const parts: PartsFn<typeof parameters> = (parameters) => {
         },
       }),
 
-      {
-        type: 'gridbeam:y',
+      GridBeam.Y({
         x: 1,
         y: [0, depth],
         z: shelfHeight - 1,
-      },
-      {
-        type: 'gridbeam:y',
+      }),
+      GridBeam.Y({
         x: shelfWidth,
         y: [0, depth],
         z: shelfHeight - 1,
-      },
+      }),
     ]
   }
 
@@ -162,82 +162,70 @@ export const parts: PartsFn<typeof parameters> = (parameters) => {
           }),
         ]
       : [
-          {
-            type: 'gridbeam:z',
+          GridBeam.Z({
             x: usePanelsForSides ? 1 : 0,
             y: depth - 1,
             z: [1, height + 1],
-          },
-          {
-            type: 'gridbeam:z',
+          }),
+          GridBeam.Z({
             x: usePanelsForSides ? 1 : 0,
             y: 0,
             z: [1, height + 1],
-          },
-          {
-            type: 'gridbeam:z',
+          }),
+          GridBeam.Z({
             x: shelfWidth + 1,
             y: depth - 1,
             z: [1, height + 1],
-          },
-          {
-            type: 'gridbeam:z',
+          }),
+          GridBeam.Z({
             x: shelfWidth + 1,
             y: 0,
             z: [1, height + 1],
-          },
-          {
-            type: 'gridbeam:z',
+          }),
+          GridBeam.Z({
             x: width + 1,
             y: depth - 1,
             z: [1, height + 1],
-          },
-          {
-            type: 'gridbeam:z',
+          }),
+          GridBeam.Z({
             x: width + 1,
             y: 0,
             z: [1, height + 1],
-          },
+          }),
         ],
 
-    {
-      type: 'gridbeam:y',
+    GridBeam.Y({
       x: width,
       y: [0, depth],
       z: 1,
-    },
-    {
-      type: 'gridbeam:y',
+    }),
+    GridBeam.Y({
       x: 1,
       y: [0, depth],
       z: 1,
-    },
-    {
-      type: 'gridbeam:y',
+    }),
+    GridBeam.Y({
       x: shelfWidth,
       y: [0, depth],
       z: 1,
-    },
+    }),
 
-    {
-      type: 'gridbeam:x',
+    GridBeam.X({
       x: [1, width + 1],
       y: 0,
       z: 0,
-    },
-    {
-      type: 'gridbeam:x',
+    }),
+    GridBeam.X({
       x: [1, width + 1],
       y: depth - 1,
       z: 0,
-    },
+    }),
 
-    {
-      type: 'gridpanel:xy',
+    GridPanel.XY({
       x: [1, shelfWidth + 1],
       y: [0, depth],
       z: 2,
-    },
+    }),
 
     range(1, numShelves).map((shelfIndex): Parts => {
       const shelfHeight = height - shelfIndex * heightPerShelf + 1
@@ -256,24 +244,21 @@ export const parts: PartsFn<typeof parameters> = (parameters) => {
       },
     }),
 
-    {
-      type: 'gridbeam:y',
+    GridBeam.Y({
       x: 1,
       y: [0, depth],
       z: height,
-    },
-    {
-      type: 'gridbeam:y',
+    }),
+    GridBeam.Y({
       x: shelfWidth,
       y: [0, depth],
       z: height,
-    },
-    {
-      type: 'gridbeam:y',
+    }),
+    GridBeam.Y({
       x: width,
       y: [0, depth],
       z: height,
-    },
+    }),
   ] satisfies Parts
 }
 
@@ -309,15 +294,15 @@ function createPanelsY(options: CreatePanelsYOptions): Parts {
       const y: [number, number] = [10 * tenPanelIndex, 10 * (tenPanelIndex + 1)]
 
       return panel.type === 'xy'
-        ? { type: 'gridpanel:xy', y, ...panel.options }
-        : { type: 'gridpanel:yz', y, ...panel.options }
+        ? GridPanel.XY({ y, ...panel.options })
+        : GridPanel.YZ({ y, ...panel.options })
     }),
     range(numTenPanels * 2, numTenPanels * 2 + numFivePanels).map((fivePanelIndex): Part => {
       const y: [number, number] = [5 * fivePanelIndex, 5 * (fivePanelIndex + 1)]
 
       return panel.type === 'xy'
-        ? { type: 'gridpanel:xy', y, ...panel.options }
-        : { type: 'gridpanel:yz', y, ...panel.options }
+        ? GridPanel.XY({ y, ...panel.options })
+        : GridPanel.YZ({ y, ...panel.options })
     }),
   ]
 }

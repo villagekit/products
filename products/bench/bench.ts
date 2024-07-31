@@ -1,4 +1,6 @@
 import type { Params, PartsFn, Plugins, Presets } from '@villagekit/design/kit'
+import { GridBeam } from '@villagekit/part-gridbeam/creator'
+import { GridPanel } from '@villagekit/part-gridpanel/creator'
 
 export const parameters = {
   seatWidth: {
@@ -90,71 +92,62 @@ export const parts: PartsFn<typeof parameters> = (parameters) => {
   const numLegSupports = Math.ceil((seatWidth - 30) / 15)
 
   return [
-    {
-      type: 'gridpanel:xy',
+    GridPanel.XY({
       x: [0, seatWidth],
       y: [seatPanelStartY, seatPanelEndY],
       z: seatHeight,
-    },
+    }),
 
-    shouldIncludeBack && {
-      type: 'gridpanel:xz',
-      x: [0, seatWidth],
-      y: seatDepth - 2,
-      z: [seatHeight + 1, seatHeight + 1 + backHeight],
-      fit: 'top',
-    },
+    shouldIncludeBack &&
+      GridPanel.XZ({
+        x: [0, seatWidth],
+        y: seatDepth - 2,
+        z: [seatHeight + 1, seatHeight + 1 + backHeight],
+        fit: 'top',
+      }),
 
-    {
-      type: 'gridbeam:z',
+    GridBeam.Z({
       x: widthOverhang,
       y: 0,
       z: [0, seatHeight],
-    },
-    {
-      type: 'gridbeam:z',
+    }),
+    GridBeam.Z({
       x: seatWidth - 1 - widthOverhang,
       y: 0,
       z: [0, seatHeight],
-    },
-    {
-      type: 'gridbeam:z',
+    }),
+    GridBeam.Z({
       x: widthOverhang,
       y: seatDepth - 1,
       z: [0, backZBeamEndZ],
-    },
-    {
-      type: 'gridbeam:z',
+    }),
+    GridBeam.Z({
       x: seatWidth - 1 - widthOverhang,
       y: seatDepth - 1,
       z: [0, backZBeamEndZ],
-    },
+    }),
 
-    {
-      type: 'gridbeam:x',
+    GridBeam.X({
       x: [0, seatWidth],
       y: 1,
       z: seatHeight - 1,
-    },
-    {
-      type: 'gridbeam:x',
+    }),
+    GridBeam.X({
       x: [0, seatWidth],
       y: seatDepth - 2,
       z: seatHeight - 1,
-    },
+    }),
 
-    {
-      type: 'gridbeam:y',
+    GridBeam.Y({
       x: 1 + widthOverhang,
       y: [0, seatDepth],
       z: seatHeight - 2,
-    },
-    {
-      type: 'gridbeam:y',
+    }),
+    GridBeam.Y({
       x: seatWidth - 2 - widthOverhang,
       y: [0, seatDepth],
       z: seatHeight - 2,
-    },
+    }),
 
     range(numLegSupports).map((legSupportIndex) => {
       const legSupportOffsetMultiplier = 1 / (numLegSupports + 1)
@@ -164,24 +157,21 @@ export const parts: PartsFn<typeof parameters> = (parameters) => {
       const legZSupportXNudge = legSupportIndex >= Math.floor(numLegSupports / 2) ? -1 : 1
 
       return [
-        {
-          type: 'gridbeam:y',
+        GridBeam.Y({
           x: legSupportOffset + legZSupportXNudge,
           y: [0, seatDepth],
           z: seatHeight - 2,
-        },
-        {
-          type: 'gridbeam:z',
+        }),
+        GridBeam.Z({
           x: legSupportOffset,
           y: 0,
           z: [0, backZBeamEndZ],
-        },
-        {
-          type: 'gridbeam:z',
+        }),
+        GridBeam.Z({
           x: legSupportOffset,
           y: seatDepth - 1,
           z: [0, seatHeight],
-        },
+        }),
       ]
     }),
   ]

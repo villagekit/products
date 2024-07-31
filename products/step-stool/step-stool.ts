@@ -1,4 +1,6 @@
 import type { Params, Parts, PartsFn, Plugins, Presets } from '@villagekit/design/kit'
+import { GridBeam } from '@villagekit/part-gridbeam/creator'
+import { GridPanel } from '@villagekit/part-gridpanel/creator'
 
 export const parameters = {
   numSteps: {
@@ -98,18 +100,16 @@ export const parts: PartsFn<typeof parameters> = (parameters) => {
   const topHeight = numSteps * stepHeight
 
   return [
-    {
-      type: 'gridbeam:y',
+    GridBeam.Y({
       x: 1,
       y: [0, (numSteps - 1) * stepDepth + topStepDepth],
       z: stepHeight - 2,
-    },
-    {
-      type: 'gridbeam:y',
+    }),
+    GridBeam.Y({
       x: stepWidth - 2,
       y: [0, (numSteps - 1) * stepDepth + topStepDepth],
       z: stepHeight - 2,
-    },
+    }),
 
     range(numSteps - 1).map((stepIndex): Parts => {
       const isFirstStep = stepIndex === 0
@@ -121,122 +121,105 @@ export const parts: PartsFn<typeof parameters> = (parameters) => {
       const panelDepth = !isLastStep ? stepDepth : stepDepth + lastStepOffset
 
       return [
-        {
-          type: 'gridpanel:xy',
+        GridPanel.XY({
           x: [0, stepWidth],
           y: [y, y + panelDepth],
           z: height,
-        },
+        }),
 
-        {
-          type: 'gridbeam:z',
+        GridBeam.Z({
           x: 0,
           y,
           z: [0, height],
-        },
+        }),
 
-        {
-          type: 'gridbeam:z',
+        GridBeam.Z({
           x: stepWidth - 1,
           y,
           z: [0, height],
-        },
+        }),
 
-        {
-          type: 'gridbeam:x',
+        GridBeam.X({
           x: [0, stepWidth],
           y: y + 1,
           z: height - 1,
-        },
-        {
-          type: 'gridbeam:x',
+        }),
+        GridBeam.X({
           x: [0, stepWidth],
           y: y + stepDepth - 1,
           z: height - 1,
-        },
+        }),
 
         !isFirstStep && [
-          {
-            type: 'gridbeam:y',
+          GridBeam.Y({
             x: 1,
             y: [y, y + stepDepth],
             z: height - 2,
-          },
-          {
-            type: 'gridbeam:y',
+          }),
+          GridBeam.Y({
             x: stepWidth - 2,
             y: [y, y + stepDepth],
             z: height - 2,
-          },
+          }),
 
-          {
-            type: 'gridbeam:x',
+          GridBeam.X({
             x: [0, stepWidth],
             y: y + 1,
             z: stepHeight - 3,
-          },
+          }),
         ],
       ]
     }),
 
-    {
-      type: 'gridpanel:xy',
+    GridPanel.XY({
       x: [0, stepWidth],
       y: [lastY, topY],
       z: topHeight,
-    },
+    }),
 
-    {
-      type: 'gridbeam:z',
+    GridBeam.Z({
       x: 0,
       y: lastY,
       z: [0, topHeight],
-    },
-    {
-      type: 'gridbeam:z',
+    }),
+    GridBeam.Z({
       x: stepWidth - 1,
       y: lastY,
       z: [0, topHeight],
-    },
+    }),
 
-    {
-      type: 'gridbeam:x',
+    GridBeam.X({
       x: [0, stepWidth],
       y: lastY + 1,
       z: topHeight - 1,
-    },
-    {
-      type: 'gridbeam:x',
+    }),
+    GridBeam.X({
       x: [0, stepWidth],
       y: topY - 2,
       z: topHeight - 1,
-    },
+    }),
 
-    {
-      type: 'gridbeam:x',
+    GridBeam.X({
       x: [0, stepWidth],
       y: lastY + 1,
       z: stepHeight - 3,
-    },
-    {
-      type: 'gridbeam:x',
+    }),
+    GridBeam.X({
       x: [0, stepWidth],
       y: topY - 2,
       z: stepHeight - 3,
-    },
+    }),
 
-    {
-      type: 'gridbeam:z',
+    GridBeam.Z({
       x: 0,
       y: topY - 1,
       z: [0, topHeight],
-    },
-    {
-      type: 'gridbeam:z',
+    }),
+    GridBeam.Z({
       x: stepWidth - 1,
       y: topY - 1,
       z: [0, topHeight],
-    },
+    }),
   ] satisfies Parts
 }
 

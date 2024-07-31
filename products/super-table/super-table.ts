@@ -1,4 +1,6 @@
 import type { Params, Part, Parts, PartsFn, Plugins, Presets } from '@villagekit/design/kit'
+import { GridBeam } from '@villagekit/part-gridbeam/creator'
+import { GridPanel } from '@villagekit/part-gridpanel/creator'
 
 export const parameters = {
   width: {
@@ -391,27 +393,24 @@ function createZPost(options: ZPostOptions): Parts {
   const { x, y, height, shouldDoublePosts, doublePlacement } = options
 
   return [
-    {
-      type: 'gridbeam:z',
+    GridBeam.Z({
       x,
       y,
       z: [0, height],
-    },
+    }),
 
     shouldDoublePosts && [
       doublePlacement === 'end'
-        ? {
-            type: 'gridbeam:z',
+        ? GridBeam.Z({
             x,
             y: y - 1,
             z: [0, height],
-          }
-        : {
-            type: 'gridbeam:z',
+          })
+        : GridBeam.Z({
             x,
             y: y + 1,
             z: [0, height],
-          },
+          }),
     ],
   ]
 }
@@ -429,12 +428,11 @@ function createXFrame(options: XFrameOptions): Parts {
   const z = shouldUnderSide ? height - 3 : height - 1
 
   return [
-    {
-      type: 'gridbeam:x',
+    GridBeam.X({
       x: [0, width],
       y,
       z,
-    },
+    }),
   ]
 }
 
@@ -448,12 +446,11 @@ function createYFrame(options: YFrameOptions): Parts {
   const { x, depth, height } = options
 
   return [
-    {
-      type: 'gridbeam:y',
+    GridBeam.Y({
       x,
       y: [0, depth],
       z: height - 2,
-    },
+    }),
   ]
 }
 
@@ -475,12 +472,12 @@ function createPanelsX(options: CreatePanelsXOptions): Parts {
     range(numTenPanels).map((tenPanelIndex): Part => {
       const x: [number, number] = [10 * tenPanelIndex, 10 * (tenPanelIndex + 1)]
 
-      return { type: 'gridpanel:xy', x, ...panel }
+      return GridPanel.XY({ x, ...panel })
     }),
     range(numTenPanels * 2, numTenPanels * 2 + numFivePanels).map((fivePanelIndex): Part => {
       const x: [number, number] = [5 * fivePanelIndex, 5 * (fivePanelIndex + 1)]
 
-      return { type: 'gridpanel:xy', x, ...panel }
+      return GridPanel.XY({ x, ...panel })
     }),
   ]
 }

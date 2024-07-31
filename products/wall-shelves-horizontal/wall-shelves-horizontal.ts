@@ -1,4 +1,6 @@
 import type { Params, Parts, PartsFn, Plugins, Presets } from '@villagekit/design/kit'
+import { GridBeam } from '@villagekit/part-gridbeam/creator'
+import { GridPanel } from '@villagekit/part-gridpanel/creator'
 
 export const parameters = {
   height: {
@@ -122,19 +124,17 @@ function posts(options: PostsOptions): Parts {
 
   return [
     // left
-    {
-      type: 'gridbeam:z',
+    GridBeam.Z({
       x: leftPostX,
       y: 1,
       z: [0, height],
-    },
+    }),
     // right
-    {
-      type: 'gridbeam:z',
+    GridBeam.Z({
       x: rightPostX,
       y: 1,
       z: [0, height],
-    },
+    }),
   ]
 }
 
@@ -156,68 +156,60 @@ function shelf(options: ShelfOptions): Parts {
   const rightPanelOverhang = Math.ceil((1 / 2) * (shelfPanelWidth - shelfBeamWidth))
 
   const yBeams: Parts = [
-    {
-      type: 'gridbeam:y',
+    GridBeam.Y({
       x: leftPostX + 1,
       y: [0, 2],
       z: z - 2,
-    },
-    {
-      type: 'gridbeam:y',
+    }),
+    GridBeam.Y({
       x: rightPostX - 1,
       y: [0, 2],
       z: z - 2,
-    },
+    }),
   ]
 
   switch (alignment) {
     case 'center':
       return [
         yBeams,
-        {
-          type: 'gridbeam:x',
+        GridBeam.X({
           x: [-Math.floor((1 / 2) * shelfBeamWidth), Math.ceil((1 / 2) * shelfBeamWidth)],
           y: 0,
           z: z - 1,
-        },
-        {
-          type: 'gridpanel:xy',
+        }),
+        GridPanel.XY({
           x: [-Math.floor((1 / 2) * shelfPanelWidth), Math.ceil((1 / 2) * shelfPanelWidth)],
           y: [0, -shelfPanelDepth],
           z: z,
-        },
+        }),
       ]
     case 'left':
       return [
         yBeams,
-        {
-          type: 'gridbeam:x',
+        GridBeam.X({
           x: [rightPostX, rightPostX - shelfBeamWidth],
           y: 0,
           z: z - 1,
-        },
-        {
-          type: 'gridpanel:xy',
+        }),
+        GridPanel.XY({
           x: [rightPostX + rightPanelOverhang, rightPostX + rightPanelOverhang - shelfPanelWidth],
           y: [0, -shelfPanelDepth],
           z: z,
-        },
+        }),
       ]
     case 'right':
       return [
         yBeams,
-        {
-          type: 'gridbeam:x',
+        GridBeam.X({
           x: [leftPostX, leftPostX + shelfBeamWidth],
           y: 0,
           z: z - 1,
-        },
-        {
-          type: 'gridpanel:xy',
+        }),
+        GridPanel.XY({
           x: [leftPostX - leftPanelOverhang, leftPostX - leftPanelOverhang + shelfPanelWidth],
           y: [0, -shelfPanelDepth],
           z: z,
-        },
+        }),
       ]
   }
 }

@@ -1,4 +1,6 @@
 import type { Params, Parts, PartsFn, Plugins, Presets } from '@villagekit/design/kit'
+import { GridBeam } from '@villagekit/part-gridbeam/creator'
+import { GridPanel } from '@villagekit/part-gridpanel/creator'
 
 export const parameters = {
   treeHeight: {
@@ -71,30 +73,26 @@ function posts(options: PostOptions): Parts {
   const { treeHeight } = options
 
   return [
-    {
-      type: 'gridbeam:z',
+    GridBeam.Z({
       x: -1,
       y: -1,
       z: [0, treeHeight],
-    },
-    {
-      type: 'gridbeam:z',
+    }),
+    GridBeam.Z({
       x: 1,
       y: -1,
       z: [0, treeHeight],
-    },
-    {
-      type: 'gridbeam:z',
+    }),
+    GridBeam.Z({
       x: -1,
       y: 1,
       z: [0, treeHeight],
-    },
-    {
-      type: 'gridbeam:z',
+    }),
+    GridBeam.Z({
       x: 1,
       y: 1,
       z: [0, treeHeight],
-    },
+    }),
   ]
 }
 
@@ -109,57 +107,49 @@ function base(options: BaseOptions): Parts {
   const baseLength = Math.ceil((leafLength + 3) / 5) * 5
 
   return [
-    {
-      type: 'gridbeam:y',
+    GridBeam.Y({
       x: 0,
       y: [-Math.floor((1 / 2) * baseLength), Math.ceil((1 / 2) * baseLength)],
       z: 0,
-    },
-    {
-      type: 'gridpanel:xy',
+    }),
+    GridPanel.XY({
       x: [-Math.floor((1 / 2) * leafWidth), Math.ceil((1 / 2) * leafWidth)],
       y: [-2, -2 - leafLength],
       z: 1,
-    },
+    }),
 
-    {
-      type: 'gridbeam:x',
+    GridBeam.X({
       x: [-Math.floor((1 / 2) * baseLength), Math.ceil((1 / 2) * baseLength)],
       y: 0,
       z: 1,
-    },
+    }),
 
-    {
-      type: 'gridbeam:y',
+    GridBeam.Y({
       x: -Math.floor((1 / 2) * baseLength),
       y: [-2, 3],
       z: 0,
-    },
-    {
-      type: 'gridbeam:z',
+    }),
+    GridBeam.Z({
       x: -Math.floor((1 / 2) * baseLength) + 1,
       y: 1,
       z: [0, 2],
-    },
-    {
-      type: 'gridpanel:xy',
+    }),
+    GridPanel.XY({
       x: [-2, -2 - leafLength],
       y: [-Math.floor((1 / 2) * leafWidth) + 1, Math.ceil((1 / 2) * leafWidth) + 1],
       z: 2,
-    },
+    }),
 
-    {
-      type: 'gridbeam:y',
+    GridBeam.Y({
       x: Math.ceil((1 / 2) * baseLength) - 1,
       y: [-2, 3],
       z: 0,
-    },
-    {
-      type: 'gridbeam:z',
+    }),
+    GridBeam.Z({
       x: Math.floor((1 / 2) * baseLength) - 1,
       y: 1,
       z: [0, 2],
-    },
+    }),
   ]
 }
 
@@ -180,75 +170,67 @@ function branch(options: BranchOptions): Parts {
   switch (branchIndex % 4) {
     case 0:
       return [
-        {
-          type: 'gridbeam:y',
+        GridBeam.Y({
           x: 0,
           y: [-1, -1 + branchLength],
           z: branchZ,
-        },
-        {
-          type: 'gridpanel:xy',
+        }),
+        GridPanel.XY({
           x: [
             -Math.floor((1 / 2) * leafWidth) + leafNudge,
             Math.ceil((1 / 2) * leafWidth) + leafNudge,
           ],
           y: [2, 2 + leafLength],
           z: branchZ + 1,
-        },
+        }),
       ]
     case 1:
       return [
-        {
-          type: 'gridbeam:x',
+        GridBeam.X({
           x: [-1, -1 + branchLength],
           y: 0,
           z: branchZ,
-        },
-        {
-          type: 'gridpanel:xy',
+        }),
+        GridPanel.XY({
           x: [2, 2 + leafLength],
           y: [
             -Math.floor((1 / 2) * leafWidth) - leafNudge + 1,
             Math.ceil((1 / 2) * leafWidth) - leafNudge + 1,
           ],
           z: branchZ + 1,
-        },
+        }),
       ]
     case 2:
       return [
-        {
-          type: 'gridbeam:y',
+        GridBeam.Y({
           x: 0,
           y: [1, 1 - leafLength],
           z: branchZ,
-        },
-        {
-          type: 'gridpanel:xy',
+        }),
+        GridPanel.XY({
           x: [
             -Math.floor((1 / 2) * leafWidth) - leafNudge + 1,
             Math.ceil((1 / 2) * leafWidth) - leafNudge + 1,
           ],
           y: [-2, -2 - leafLength],
           z: branchZ + 1,
-        },
+        }),
       ]
     case 3:
       return [
-        {
-          type: 'gridbeam:x',
+        GridBeam.X({
           x: [1, 1 - branchLength],
           y: 0,
           z: branchZ,
-        },
-        {
-          type: 'gridpanel:xy',
+        }),
+        GridPanel.XY({
           x: [-2, -2 - leafLength],
           y: [
             -Math.floor((1 / 2) * leafWidth) + leafNudge,
             Math.ceil((1 / 2) * leafWidth) + leafNudge,
           ],
           z: branchZ + 1,
-        },
+        }),
       ]
     default:
       return []
@@ -265,17 +247,15 @@ function top(options: TopOptions): Parts {
   const { treeHeight, leafLength, leafWidth } = options
 
   return [
-    {
-      type: 'gridbeam:x',
+    GridBeam.X({
       x: [-Math.floor((1 / 2) * leafLength), Math.ceil((1 / 2) * leafLength)],
       y: 0,
       z: treeHeight - 1,
-    },
-    {
-      type: 'gridpanel:xy',
+    }),
+    GridPanel.XY({
       x: [-Math.floor((1 / 2) * leafLength), Math.ceil((1 / 2) * leafLength)],
       y: [-Math.floor((1 / 2) * leafWidth) + 1, Math.ceil((1 / 2) * leafWidth) + 1],
       z: treeHeight,
-    },
+    }),
   ]
 }

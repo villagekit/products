@@ -1,4 +1,6 @@
 import type { Params, Part, Parts, PartsFn, Plugins, Presets } from '@villagekit/design/kit'
+import { GridBeam } from '@villagekit/part-gridbeam/creator'
+import { GridPanel } from '@villagekit/part-gridpanel/creator'
 
 export const parameters = {
   boardWidth: {
@@ -88,38 +90,33 @@ export const parts: PartsFn<typeof parameters> = (parameters) => {
       zOffset: legHeight,
     }),
 
-    {
-      type: 'gridbeam:z',
+    GridBeam.Z({
       x: 0,
       y: 0,
       z: [0, legHeight + boardHeight],
-    },
-    {
-      type: 'gridbeam:z',
+    }),
+    GridBeam.Z({
       x: boardWidth - 1,
       y: 0,
       z: [0, legHeight + boardHeight],
-    },
+    }),
 
-    {
-      type: 'gridbeam:y',
+    GridBeam.Y({
       x: 1,
       y: [legYStart, legYEnd],
       z: 0,
-    },
-    {
-      type: 'gridbeam:y',
+    }),
+    GridBeam.Y({
       x: boardWidth - 2,
       y: [legYStart, legYEnd],
       z: 0,
-    },
+    }),
 
-    {
-      type: 'gridbeam:x',
+    GridBeam.X({
       x: [0, boardWidth],
       y: 1,
       z: 1,
-    },
+    }),
   ]
 }
 
@@ -143,12 +140,12 @@ export function createPanelsZ(options: CreatePanelsXZOptions): Parts {
     range(numTenPanels).map((tenPanelIndex): Part => {
       const z: [number, number] = [zOffset + 10 * tenPanelIndex, zOffset + 10 * (tenPanelIndex + 1)]
 
-      return { type: 'gridpanel:xz', z, ...panel }
+      return GridPanel.XZ({ z, ...panel })
     }),
     range(numTenPanels * 2, numTenPanels * 2 + numFivePanels).map((fivePanelIndex): Part => {
       const z: [number, number] = [zOffset + 5 * fivePanelIndex, zOffset + 5 * (fivePanelIndex + 1)]
 
-      return { type: 'gridpanel:xz', z, ...panel }
+      return GridPanel.XZ({ z, ...panel })
     }),
   ]
 }

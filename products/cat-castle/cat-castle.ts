@@ -1,4 +1,6 @@
 import type { Parts, Plugins } from '@villagekit/design/kit'
+import { GridBeam } from '@villagekit/part-gridbeam/creator'
+import { GridPanel } from '@villagekit/part-gridpanel/creator'
 
 const castleHeight = 30
 const castleWidth = 10
@@ -21,30 +23,26 @@ export const parts: Parts = [
 
 function posts(): Parts {
   return [
-    {
-      type: 'gridbeam:z',
+    GridBeam.Z({
       x: 0,
       y: 0,
       z: [0, castleHeight],
-    },
-    {
-      type: 'gridbeam:z',
+    }),
+    GridBeam.Z({
       x: 0,
       y: castleDepth - 1,
       z: [0, castleHeight],
-    },
-    {
-      type: 'gridbeam:z',
+    }),
+    GridBeam.Z({
       x: castleWidth - 1,
       y: 0,
       z: [0, castleHeight],
-    },
-    {
-      type: 'gridbeam:z',
+    }),
+    GridBeam.Z({
       x: castleWidth - 1,
       y: castleDepth - 1,
       z: [0, castleHeight],
-    },
+    }),
   ]
 }
 
@@ -58,36 +56,31 @@ function level(options: LevelOptions): Parts {
   const { beamX, panelX, z } = options
 
   return [
-    {
-      type: 'gridbeam:y',
+    GridBeam.Y({
       x: 1,
       y: [0, castleDepth],
       z: z - 1,
-    },
-    {
-      type: 'gridbeam:y',
+    }),
+    GridBeam.Y({
       x: castleWidth - 2,
       y: [0, castleDepth],
       z: z - 1,
-    },
-    {
-      type: 'gridbeam:x',
+    }),
+    GridBeam.X({
       x: beamX,
       y: 1,
       z,
-    },
-    {
-      type: 'gridbeam:x',
+    }),
+    GridBeam.X({
       x: beamX,
       y: castleDepth - 2,
       z,
-    },
-    {
-      type: 'gridpanel:xy',
+    }),
+    GridPanel.XY({
       fit: 'bottom',
       x: panelX,
       y: [1, castleDepth - 1],
       z: z + 1,
-    },
+    }),
   ]
 }

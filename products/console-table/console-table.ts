@@ -1,4 +1,6 @@
 import type { Params, Parts, PartsFn, Plugins, Presets } from '@villagekit/design/kit'
+import { GridBeam } from '@villagekit/part-gridbeam/creator'
+import { GridPanel } from '@villagekit/part-gridpanel/creator'
 
 export const parameters = {
   baseWidth: {
@@ -56,101 +58,88 @@ export const parts: PartsFn<typeof parameters> = (parameters) => {
 
   return [
     // left front beam z
-    {
-      type: 'gridbeam:z',
+    GridBeam.Z({
       x: 0,
       y: 0,
       z: [0, height],
-    },
+    }),
     // left back beam z
-    {
-      type: 'gridbeam:z',
+    GridBeam.Z({
       x: 0,
       y: depth - 1,
       z: [0, height],
-    },
+    }),
     // right front beam z
-    {
-      type: 'gridbeam:z',
+    GridBeam.Z({
       x: baseWidth - 1,
       y: 0,
       z: [0, height],
-    },
+    }),
     // right back beam z
-    {
-      type: 'gridbeam:z',
+    GridBeam.Z({
       x: baseWidth - 1,
       y: depth - 1,
       z: [0, height],
-    },
+    }),
 
     // bottom front beam x
-    {
-      type: 'gridbeam:x',
+    GridBeam.X({
       x: [0, baseWidth],
       y: 1,
       z: 0,
-    },
+    }),
     // bottom back beam x
-    {
-      type: 'gridbeam:x',
+    GridBeam.X({
       x: [0, baseWidth],
       y: depth - 2,
       z: 0,
-    },
+    }),
 
     // top front beam x
-    {
-      type: 'gridbeam:x',
+    GridBeam.X({
       x: [-widthOverhangLeft, baseWidth + widthOverhangRight],
       y: 1,
       z: height - 1,
-    },
+    }),
     // top back beam x
-    {
-      type: 'gridbeam:x',
+    GridBeam.X({
       x: [-widthOverhangLeft, baseWidth + widthOverhangRight],
       y: depth - 2,
       z: height - 1,
-    },
+    }),
 
     // bottom left beam y
-    {
-      type: 'gridbeam:y',
+    GridBeam.Y({
       x: 1,
       y: [0, depth],
       z: 1,
-    },
+    }),
     // bottom right beam y
-    {
-      type: 'gridbeam:y',
+    GridBeam.Y({
       x: baseWidth - 2,
       y: [0, depth],
       z: 1,
-    },
+    }),
 
     // top left beam y
-    {
-      type: 'gridbeam:y',
+    GridBeam.Y({
       x: 1,
       y: [0, depth],
       z: height - 2,
-    },
+    }),
     // top right beam y
-    {
-      type: 'gridbeam:y',
+    GridBeam.Y({
       x: baseWidth - 2,
       y: [0, depth],
       z: height - 2,
-    },
+    }),
 
     // top panel
-    {
-      type: 'gridpanel:xy',
+    GridPanel.XY({
       x: [-widthOverhangLeft, baseWidth + widthOverhangRight],
       y: [0, depth],
       z: height,
-    },
+    }),
   ] satisfies Parts
 }
 

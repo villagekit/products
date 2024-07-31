@@ -1,4 +1,6 @@
 import type { Params, Part, Parts, PartsFn, Plugins, Presets } from '@villagekit/design/kit'
+import { GridBeam } from '@villagekit/part-gridbeam/creator'
+import { GridPanel } from '@villagekit/part-gridpanel/creator'
 
 export const parameters = {
   width: {
@@ -171,171 +173,150 @@ export const parts: PartsFn<typeof parameters> = (parameters) => {
   return [
     shouldIncludePanels &&
       range(numPanels).map((index: number): Part => {
-        return {
-          type: 'gridpanel:xy',
+        return GridPanel.XY({
           x: [0, width],
           y: [index * panelWidth, (index + 1) * panelWidth],
           z: height,
-        }
+        })
       }),
 
     range(numPanelSupports - 1).map((index: number): Part => {
       const xOffset = index / numPanelSupports < 1 / 2 ? 1 : -1
 
-      return {
-        type: 'gridbeam:y',
+      return GridBeam.Y({
         x: index * gridsPerPanelSupport + xOffset,
         y: [0, depth],
         z: height - 1,
-      }
+      })
     }),
-    {
-      type: 'gridbeam:y',
+    GridBeam.Y({
       x: width - 1,
       y: [0, depth],
       z: height - 1,
-    },
+    }),
 
     range(numPanelSupports - 1).map((index: number): Parts => {
       return [
-        {
-          type: 'gridbeam:z',
+        GridBeam.Z({
           x: index * gridsPerPanelSupport,
           y: 1,
           z: [0, height],
-        },
-        {
-          type: 'gridbeam:z',
+        }),
+        GridBeam.Z({
           x: index * gridsPerPanelSupport,
           y: depth - 2,
           z: [0, height],
-        },
+        }),
       ]
     }),
-    {
-      type: 'gridbeam:z',
+    GridBeam.Z({
       x: width - 2,
       y: 1,
       z: [0, height],
-    },
-    {
-      type: 'gridbeam:z',
+    }),
+    GridBeam.Z({
       x: width - 2,
       y: depth - 2,
       z: [0, height],
-    },
+    }),
 
-    {
-      type: 'gridbeam:x',
+    GridBeam.X({
       x: [0, width],
       y: 0,
       z: height - 2,
-    },
-    {
-      type: 'gridbeam:x',
+    }),
+    GridBeam.X({
       x: [0, width],
       y: depth - 1,
       z: height - 2,
-    },
+    }),
 
     hasDepthwiseBottoms && [
       range(numPanelSupports - 1).map((index: number): Part => {
         const xOffset = index / numPanelSupports < 1 / 2 ? 1 : -1
 
-        return {
-          type: 'gridbeam:y',
+        return GridBeam.Y({
           x: index * gridsPerPanelSupport + xOffset,
           y: [0, depth],
           z: 1,
-        }
+        })
       }),
-      {
-        type: 'gridbeam:y',
+      GridBeam.Y({
         x: width - 1,
         y: [0, depth],
         z: 1,
-      },
+      }),
 
       !hasWidthwiseBottoms && [
         range(numPanelSupports - 1).map((index: number): Parts => {
           const xOffset = index / numPanelSupports < 1 / 2 ? 1 : -1
 
           return [
-            {
-              type: 'gridbeam:x',
+            GridBeam.X({
               x: [index * gridsPerPanelSupport, index * gridsPerPanelSupport + 2 * xOffset],
               y: 0,
               z: 2,
-            },
-            {
-              type: 'gridbeam:x',
+            }),
+            GridBeam.X({
               x: [index * gridsPerPanelSupport, index * gridsPerPanelSupport + 2 * xOffset],
               y: depth - 1,
               z: 2,
-            },
+            }),
           ]
         }),
 
-        {
-          type: 'gridbeam:x',
+        GridBeam.X({
           x: [width - 2, width],
           y: 0,
           z: 2,
-        },
-        {
-          type: 'gridbeam:x',
+        }),
+        GridBeam.X({
           x: [width - 2, width],
           y: depth - 1,
           z: 2,
-        },
+        }),
       ],
     ],
 
     hasWidthwiseBottoms && [
-      {
-        type: 'gridbeam:x',
+      GridBeam.X({
         x: [0, width],
         y: 0,
         z: 2,
-      },
-      {
-        type: 'gridbeam:x',
+      }),
+      GridBeam.X({
         x: [0, width],
         y: depth - 1,
         z: 2,
-      },
+      }),
 
       !hasDepthwiseBottoms && [
         range(numPanelSupports - 1).map((index: number): Parts => {
           const xOffset = index / numPanelSupports < 1 / 2 ? 1 : -1
 
           return [
-            {
-              type: 'gridbeam:y',
+            GridBeam.Y({
               x: index * gridsPerPanelSupport + xOffset,
               y: [0, 2],
               z: 1,
-            },
-            {
-              type: 'gridbeam:y',
+            }),
+            GridBeam.Y({
               x: index * gridsPerPanelSupport + xOffset,
               y: [depth - 2, depth],
               z: 1,
-            },
+            }),
           ]
         }),
-        {
-          type: 'gridbeam:y',
+        GridBeam.Y({
           x: width - 1,
           y: [0, 2],
           z: 1,
-        },
-        {
-          type: 'gridbeam:y',
+        }),
+        GridBeam.Y({
           x: width - 1,
           y: [depth - 2, depth],
           z: 1,
-        },
+        }),
       ],
     ],
   ] satisfies Parts

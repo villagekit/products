@@ -1,4 +1,6 @@
 import type { Params, Part, Parts, PartsFn, Plugins, Presets } from '@villagekit/design/kit'
+import { GridBeam } from '@villagekit/part-gridbeam/creator'
+import { GridPanel } from '@villagekit/part-gridpanel/creator'
 
 export const parameters = {
   width: {
@@ -55,56 +57,48 @@ export const parts: PartsFn<typeof parameters> = (parameters) => {
       },
     }),
 
-    {
-      type: 'gridbeam:z',
+    GridBeam.Z({
       x: 1,
       y: 1,
       z: [0, height],
-    },
-    {
-      type: 'gridbeam:z',
+    }),
+    GridBeam.Z({
       x: width - 2,
       y: 1,
       z: [0, height],
-    },
-    {
-      type: 'gridbeam:z',
+    }),
+    GridBeam.Z({
       x: 1,
       y: depth - 2,
       z: [0, height],
-    },
-    {
-      type: 'gridbeam:z',
+    }),
+    GridBeam.Z({
       x: width - 2,
       y: depth - 2,
       z: [0, height],
-    },
+    }),
 
-    {
-      type: 'gridbeam:x',
+    GridBeam.X({
       x: [0, width],
       y: 0,
       z: height - 2,
-    },
-    {
-      type: 'gridbeam:x',
+    }),
+    GridBeam.X({
       x: [0, width],
       y: depth - 1,
       z: height - 2,
-    },
+    }),
 
-    {
-      type: 'gridbeam:y',
+    GridBeam.Y({
       x: 0,
       y: [0, depth],
       z: height - 1,
-    },
-    {
-      type: 'gridbeam:y',
+    }),
+    GridBeam.Y({
       x: width - 1,
       y: [0, depth],
       z: height - 1,
-    },
+    }),
   ] satisfies Parts
 }
 
@@ -129,7 +123,7 @@ export interface CreatePanelsYOptions {
       }
 }
 
-export function createPanelsY(options: CreatePanelsYOptions): Parts {
+function createPanelsY(options: CreatePanelsYOptions): Parts {
   const { depth, panel } = options
 
   const numTenPanels = Math.floor(depth / 10)
@@ -140,15 +134,15 @@ export function createPanelsY(options: CreatePanelsYOptions): Parts {
       const y: [number, number] = [10 * tenPanelIndex, 10 * (tenPanelIndex + 1)]
 
       return panel.type === 'xy'
-        ? { type: 'gridpanel:xy', y, ...panel.options }
-        : { type: 'gridpanel:yz', y, ...panel.options }
+        ? GridPanel.XY({ y, ...panel.options })
+        : GridPanel.YZ({ y, ...panel.options })
     }),
     range(numTenPanels * 2, numTenPanels * 2 + numFivePanels).map((fivePanelIndex): Part => {
       const y: [number, number] = [5 * fivePanelIndex, 5 * (fivePanelIndex + 1)]
 
       return panel.type === 'xy'
-        ? { type: 'gridpanel:xy', y, ...panel.options }
-        : { type: 'gridpanel:yz', y, ...panel.options }
+        ? GridPanel.XY({ y, ...panel.options })
+        : GridPanel.YZ({ y, ...panel.options })
     }),
   ]
 }

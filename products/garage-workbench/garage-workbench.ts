@@ -1,4 +1,6 @@
 import type { Params, Parts, PartsFn, Plugins, Presets } from '@villagekit/design/kit'
+import { GridBeam } from '@villagekit/part-gridbeam/creator'
+import { GridPanel } from '@villagekit/part-gridpanel/creator'
 
 export const parameters = {
   unitHeight: {
@@ -105,57 +107,49 @@ type UnitOptions = {
 function unit(options: UnitOptions): Parts {
   const { start, unitSize, boxHeight, boxZs } = options
   return [
-    {
-      type: 'gridbeam:z',
+    GridBeam.Z({
       x: start.x,
       y: start.y,
       z: [start.z, start.z + unitSize.z],
-    },
-    {
-      type: 'gridbeam:z',
+    }),
+    GridBeam.Z({
       x: start.x + unitSize.x - 1,
       y: start.y,
       z: [start.z, start.z + unitSize.z],
-    },
-    {
-      type: 'gridbeam:z',
+    }),
+    GridBeam.Z({
       x: start.x,
       y: start.y + unitSize.y - 1,
       z: [start.z, start.z + unitSize.z],
-    },
-    {
-      type: 'gridbeam:z',
+    }),
+    GridBeam.Z({
       x: start.x + unitSize.x - 1,
       y: start.y + unitSize.y - 1,
       z: [start.z, start.z + unitSize.z],
-    },
+    }),
 
     boxZs.map(
       (z): Parts => [
-        {
-          type: 'gridbeam:x',
+        GridBeam.X({
           x: [start.x, start.x + unitSize.x],
           y: start.y + 1,
           z: z - 2,
-        },
-        {
-          type: 'gridbeam:x',
+        }),
+        GridBeam.X({
           x: [start.x, start.x + unitSize.x],
           y: start.y + unitSize.y - 2,
           z: z - 2,
-        },
-        {
-          type: 'gridbeam:y',
+        }),
+        GridBeam.Y({
           x: start.x + 1,
           y: [start.y, start.y + unitSize.y],
           z: z - 1,
-        },
-        {
-          type: 'gridbeam:y',
+        }),
+        GridBeam.Y({
           x: start.x + unitSize.x - 2,
           y: [start.y, start.y + unitSize.y],
           z: z - 1,
-        },
+        }),
 
         box({
           start: {
@@ -172,38 +166,33 @@ function unit(options: UnitOptions): Parts {
       ],
     ),
 
-    {
-      type: 'gridbeam:y',
+    GridBeam.Y({
       x: start.x + 1,
       y: [start.y, start.y + unitSize.y],
       z: unitSize.z - 2,
-    },
-    {
-      type: 'gridbeam:y',
+    }),
+    GridBeam.Y({
       x: start.x + unitSize.x - 2,
       y: [start.y, start.y + unitSize.y],
       z: unitSize.z - 2,
-    },
-    {
-      type: 'gridbeam:x',
+    }),
+    GridBeam.X({
       x: [start.x, start.x + unitSize.x],
       y: start.y + 1,
       z: unitSize.z - 1,
-    },
-    {
-      type: 'gridbeam:x',
+    }),
+    GridBeam.X({
       x: [start.x, start.x + unitSize.x],
       y: start.y + unitSize.y - 2,
       z: unitSize.z - 1,
-    },
+    }),
 
-    {
-      type: 'gridpanel:xy',
+    GridPanel.XY({
       x: [start.x, start.x + unitSize.x],
       y: [start.y, start.y + unitSize.y],
       z: unitSize.z,
       fit: 'bottom',
-    },
+    }),
   ]
 }
 
@@ -225,44 +214,39 @@ function box(options: BoxOptions): Parts {
 
   return [
     // bottom
-    {
-      type: 'gridpanel:xy',
+    GridPanel.XY({
       x: [start.x, start.x + size.x],
       y: [start.y, start.y + size.y],
       z: start.z - 1,
       fit: 'top',
-    },
+    }),
     // front
-    {
-      type: 'gridpanel:xz',
+    GridPanel.XZ({
       x: [start.x, start.x + size.x],
       y: start.y - 1,
       z: [start.z, start.z + size.z],
       fit: 'top',
-    },
+    }),
     // back
-    {
-      type: 'gridpanel:xz',
+    GridPanel.XZ({
       x: [start.x, start.x + size.x],
       y: start.y + size.y,
       z: [start.z, start.z + size.z],
       fit: 'bottom',
-    },
+    }),
     // left
-    {
-      type: 'gridpanel:yz',
+    GridPanel.YZ({
       x: start.x - 1,
       y: [start.y, start.y + size.y],
       z: [start.z, start.z + size.z],
       fit: 'top',
-    },
+    }),
     // right
-    {
-      type: 'gridpanel:yz',
+    GridPanel.YZ({
       x: start.x + size.x,
       y: [start.y, start.y + size.y],
       z: [start.z, start.z + size.z],
       fit: 'bottom',
-    },
+    }),
   ]
 }

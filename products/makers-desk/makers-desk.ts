@@ -1,4 +1,6 @@
 import type { Params, Parts, PartsFn, Plugins, Presets } from '@villagekit/design/kit'
+import { GridBeam } from '@villagekit/part-gridbeam/creator'
+import { GridPanel } from '@villagekit/part-gridpanel/creator'
 
 export const parameters = {
   deskHeight: {
@@ -60,191 +62,165 @@ export const parts: PartsFn<typeof parameters> = (parameters) => {
 
   return [
     // desk panel
-    {
-      type: 'gridpanel:xy',
+    GridPanel.XY({
       x: [0, deskWidth - 2],
       y: [0, deskDepth],
       z: deskHeight,
-    },
+    }),
     // storage panel
-    {
-      type: 'gridpanel:xy',
+    GridPanel.XY({
       x: [-1, deskWidth - 1],
       y: [deskDepth - storageDepth, deskDepth],
       z: deskHeight + storageHeight,
-    },
+    }),
 
     // front left post
-    {
-      type: 'gridbeam:z',
+    GridBeam.Z({
       x: 1,
       y: 0,
       z: [0, deskHeight],
-    },
+    }),
     // middle left post
-    {
-      type: 'gridbeam:z',
+    GridBeam.Z({
       x: -1,
       y: deskDepth - storageDepth,
       z: [0, deskHeight + storageHeight],
-    },
+    }),
     // back left post
-    {
-      type: 'gridbeam:z',
+    GridBeam.Z({
       x: -1,
       y: deskDepth - 1,
       z: [0, deskHeight + storageHeight],
-    },
+    }),
     // front right post
-    {
-      type: 'gridbeam:z',
+    GridBeam.Z({
       x: deskWidth - 4,
       y: 0,
       z: [0, deskHeight],
-    },
+    }),
     // middle right post
-    {
-      type: 'gridbeam:z',
+    GridBeam.Z({
       x: deskWidth - 2,
       y: deskDepth - storageDepth,
       z: [0, deskHeight + storageHeight],
-    },
+    }),
     // back right post
-    {
-      type: 'gridbeam:z',
+    GridBeam.Z({
       x: deskWidth - 2,
       y: deskDepth - 1,
       z: [0, deskHeight + storageHeight],
-    },
+    }),
 
     // bottom left y
-    {
-      type: 'gridbeam:y',
+    GridBeam.Y({
       x: 0,
       y: [0, deskDepth],
       z: 0,
-    },
+    }),
     // bottom right y
-    {
-      type: 'gridbeam:y',
+    GridBeam.Y({
       x: deskWidth - 3,
       y: [0, deskDepth],
       z: 0,
-    },
+    }),
     // desk left y
-    {
-      type: 'gridbeam:y',
+    GridBeam.Y({
       x: 0,
       y: [0, deskDepth],
       z: deskHeight - 2,
-    },
+    }),
     // desk right y
-    {
-      type: 'gridbeam:y',
+    GridBeam.Y({
       x: deskWidth - 3,
       y: [0, deskDepth],
       z: deskHeight - 2,
-    },
+    }),
     // storage left y
-    {
-      type: 'gridbeam:y',
+    GridBeam.Y({
       x: 0,
       y: [deskDepth - storageDepth, deskDepth],
       z: deskHeight + storageHeight - 2,
-    },
+    }),
     // storage right y
-    {
-      type: 'gridbeam:y',
+    GridBeam.Y({
       x: deskWidth - 3,
       y: [deskDepth - storageDepth, deskDepth],
       z: deskHeight + storageHeight - 2,
-    },
+    }),
 
     // bottom left front x
-    {
-      type: 'gridbeam:x',
+    GridBeam.X({
       x: [0, 2],
       y: 1,
       z: 1,
-    },
+    }),
     // bottom left middle x
-    {
-      type: 'gridbeam:x',
+    GridBeam.X({
       x: [-1, 1],
       y: deskDepth - storageDepth + 1,
       z: 1,
-    },
+    }),
     // bottom left back x
-    {
-      type: 'gridbeam:x',
+    GridBeam.X({
       x: [-1, 1],
       y: deskDepth - 2,
       z: 1,
-    },
+    }),
     // bottom right front x
-    {
-      type: 'gridbeam:x',
+    GridBeam.X({
       x: [deskWidth - 4, deskWidth - 2],
       y: 1,
       z: 1,
-    },
+    }),
     // bottom right middle x
-    {
-      type: 'gridbeam:x',
+    GridBeam.X({
       x: [deskWidth - 3, deskWidth - 1],
       y: deskDepth - storageDepth + 1,
       z: 1,
-    },
+    }),
     // bottom right back x
-    {
-      type: 'gridbeam:x',
+    GridBeam.X({
       x: [deskWidth - 3, deskWidth - 1],
       y: deskDepth - 2,
       z: 1,
-    },
+    }),
 
     // desk left front x
-    {
-      type: 'gridbeam:x',
+    GridBeam.X({
       x: [0, deskWidth - 2],
       y: 1,
       z: deskHeight - 1,
-    },
+    }),
     // desk left support x
-    {
-      type: 'gridbeam:x',
+    GridBeam.X({
       x: [0, deskWidth - 2],
       y: Math.floor((deskDepth - storageDepth) / 2) + 1,
       z: deskHeight - 1,
-    },
+    }),
     // desk left storage front x
-    {
-      type: 'gridbeam:x',
+    GridBeam.X({
       x: [-1, deskWidth - 1],
       y: deskDepth - storageDepth + 1,
       z: deskHeight - 1,
-    },
+    }),
     // desk left storage back x
-    {
-      type: 'gridbeam:x',
+    GridBeam.X({
       x: [-1, deskWidth - 1],
       y: deskDepth - 2,
       z: deskHeight - 1,
-    },
+    }),
 
     // storage left front x
-    {
-      type: 'gridbeam:x',
+    GridBeam.X({
       x: [-1, deskWidth - 1],
       y: deskDepth - storageDepth + 1,
       z: deskHeight + storageHeight - 1,
-    },
+    }),
     // storage left back x
-    {
-      type: 'gridbeam:x',
+    GridBeam.X({
       x: [-1, deskWidth - 1],
       y: deskDepth - 2,
       z: deskHeight + storageHeight - 1,
-    },
+    }),
   ] satisfies Parts
 }
