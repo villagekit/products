@@ -28,20 +28,12 @@ export const parameters = {
     max: 30,
     step: 5,
   },
-  supportHeight: {
-    label: 'Support Height',
-    shortId: 'sh',
+  supportSpacing: {
+    label: 'Support Spacing',
+    shortId: 'sp',
     type: 'number',
-    min: 10,
-    max: 30,
-  },
-  supportLength: {
-    label: 'Support Length',
-    shortId: 'sl',
-    type: 'number',
-    min: 10,
-    max: 30,
-    step: 5,
+    min: 4,
+    max: 12,
   },
 } satisfies Params
 
@@ -53,18 +45,22 @@ export const presets: Presets<typeof parameters> = [
       fortHeight: 30,
       fortWidth: 30,
       fortDepth: 30,
-      supportLength: 30,
-      supportHeight: 21,
+      supportSpacing: 8,
     },
   },
 ]
 
 export const parts: PartsFn<typeof parameters> = (parameters) => {
-  const { fortHeight, fortWidth, fortDepth, supportLength, supportHeight } = parameters
+  const { fortHeight, fortWidth, fortDepth, supportSpacing } = parameters
+
+  const supportPosition = fortHeight - supportSpacing - 1
 
   const gridLength = 0.04
 
-  const supportAngle = calculateSupportAngle(supportLength, supportHeight)
+  const supportLength = fortHeight
+  const supportAngle = calculateSupportAngle(supportLength, supportPosition)
+
+  console.log('support angle', supportAngle)
 
   return [
     // front left z beam
@@ -122,23 +118,23 @@ export const parts: PartsFn<typeof parameters> = (parameters) => {
         GridBeam.X({
           x: [1 - supportLength, 1],
           y: 1,
-          z: supportHeight,
+          z: supportPosition,
         }),
         GridBeam.X({
           x: [1 - supportLength, 1],
           y: fortDepth - 2,
-          z: supportHeight,
+          z: supportPosition,
         }),
         GridBeam.Y({
           x: 4 - supportLength,
           y: [0, fortDepth],
-          z: supportHeight + 1,
+          z: supportPosition + 1,
         }),
       ],
       {
         direction: [0, 1, 0],
-        angle: -90 + supportAngle,
-        origin: [0, 0, supportHeight * gridLength],
+        angle: -supportAngle,
+        origin: [0, 0, supportPosition * gridLength],
       },
     ),
 
@@ -148,31 +144,32 @@ export const parts: PartsFn<typeof parameters> = (parameters) => {
         GridBeam.X({
           x: [fortWidth - 1, fortWidth - 1 + supportLength],
           y: 1,
-          z: supportHeight,
+          z: supportPosition,
         }),
         GridBeam.X({
           x: [fortWidth - 1, fortWidth - 1 + supportLength],
           y: fortDepth - 2,
-          z: supportHeight,
+          z: supportPosition,
         }),
         GridBeam.Y({
           x: fortWidth - 1 + supportLength - 4,
           y: [0, fortDepth],
-          z: supportHeight + 1,
+          z: supportPosition + 1,
         }),
       ],
       {
         direction: [0, 1, 0],
-        angle: 90 - supportAngle,
-        origin: [(fortWidth - 1) * gridLength, 0, supportHeight * gridLength],
+        angle: supportAngle,
+        origin: [(fortWidth - 1) * gridLength, 0, supportPosition * gridLength],
       },
     ),
   ] satisfies Parts
 }
 
-function calculateSupportAngle(supportLength: number, supportHeight: number) {
-  const height = supportHeight - 0.5
-  const rads = Math.atan(height / Math.sqrt(supportLength ** 2 - height ** 2))
+function calculateSupportAngle(supportLength: number, supportPosition: number) {
+  const height = supportPosition + 1 - 0.5
+  const length = supportLength - 0.5
+  const rads = Math.atan(height / Math.sqrt(length ** 2 - height ** 2))
   return radToDeg(rads)
 }
 
