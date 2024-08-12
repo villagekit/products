@@ -69,7 +69,7 @@ export const parts: Parts = [
     z: fortHeight - 2,
   }),
 
-  // left front support
+  // left supports
   rotateGroup(
     [
       GridBeam.X({
@@ -95,48 +95,31 @@ export const parts: Parts = [
     },
   ),
 
-  /*
-  // left back support
-    GridBeam.create({
-      variantId: '40mm:8mm:douglas-fir',
-      lengthInGrids: supportLength,
-    })
-    .rotate({ direction: [0, 1, 0], angle: 90 + supportAngle })
-    .translate([0, (fortDepth - 2) * gridLength, supportHeight * gridLength]),
-
-  // left cross support
-  GridBeam.create({
-    variantId: '40mm:8mm:douglas-fir',
-    lengthInGrids: supportLength,
-  })
-    .rotate({ direction: [0, 0, 1], angle: 90 })
-    .translate([(4 - supportLength) * gridLength, 0, supportHeight * gridLength])
-    .rotate({
+  // left supports
+  rotateGroup(
+    [
+      GridBeam.X({
+        x: [fortWidth - 1, fortWidth - 1 + supportLength],
+        y: 1,
+        z: supportHeight,
+      }),
+      GridBeam.X({
+        x: [fortWidth - 1, fortWidth - 1 + supportLength],
+        y: fortDepth - 2,
+        z: supportHeight,
+      }),
+      GridBeam.Y({
+        x: fortWidth - 1 + supportLength - 4,
+        y: [0, fortDepth],
+        z: supportHeight + 1,
+      }),
+    ],
+    {
       direction: [0, 1, 0],
-      angle: -supportAngle,
-      origin: [0, 0, supportHeight * gridLength],
-    }),
-  */
-
-  // right front support
-  GridBeam.create({
-    variantId: '40mm:8mm:douglas-fir',
-    lengthInGrids: supportLength,
-  })
-    .rotate({ direction: [0, 1, 0], angle: 90 - supportAngle })
-    .translate([(fortWidth - 1) * gridLength, 1 * gridLength, supportHeight * gridLength]),
-
-  // right back support
-  GridBeam.create({
-    variantId: '40mm:8mm:douglas-fir',
-    lengthInGrids: supportLength,
-  })
-    .rotate({ direction: [0, 1, 0], angle: 90 - supportAngle })
-    .translate([
-      (fortWidth - 1) * gridLength,
-      (fortDepth - 2) * gridLength,
-      supportHeight * gridLength,
-    ]),
+      angle: 90 - supportAngle,
+      origin: [(fortWidth - 1) * gridLength, 0, supportHeight * gridLength],
+    },
+  ),
 ]
 
 function rotateGroup(parts: Array<GridBeam>, rotation: RotateOptions) {
