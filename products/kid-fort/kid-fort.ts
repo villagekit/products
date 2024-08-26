@@ -60,8 +60,6 @@ export const parts: PartsFn<typeof parameters> = (parameters) => {
   const supportLength = fortHeight
   const supportAngle = calculateSupportAngle(supportLength, supportPosition)
 
-  console.log('support angle', supportAngle)
-
   return [
     // front left z beam
     GridBeam.Z({
