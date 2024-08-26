@@ -167,10 +167,22 @@ export const parts: PartsFn<typeof parameters> = (parameters) => {
 }
 
 function calculateSupportAngle(supportLength: number, supportPosition: number) {
-  const height = supportPosition + 1 - 0.5
+  // We calculate the support angle by using your childhood favorite: SOHCAHTOA.
+  //
+  // First create a right triangle with what you know:
+  //   opposite = (H + 0.5)gu
+  //   hypotenuse = (L - 0.5)gu
+  //
+  // So:
+  //   cos(theta) = (H + 0.5)gu / (L - 0.5)gu
+  //   theta = acos((H + 0.5) / (L - 0.5))
+  //
+  // And then the angle we want is actually 90 - theta.
+
+  const height = supportPosition + 0.5
   const length = supportLength - 0.5
-  const rads = Math.atan(height / Math.sqrt(length ** 2 - height ** 2))
-  return radToDeg(rads)
+  const rads = Math.acos(height / length)
+  return 90 - radToDeg(rads)
 }
 
 function rotateGroup(parts: Array<GridBeam>, rotation: RotateOptions) {
