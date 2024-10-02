@@ -38,16 +38,6 @@ export const parameters = {
 
 export const presets: Presets<typeof parameters> = [
   {
-    id: 'regular-bottom',
-    label: 'Regular (Bottom)',
-    values: {
-      shelfWidth: 30,
-      shelfDepth: 5,
-      mountLength: 5,
-      mountType: 'bottom',
-    },
-  },
-  {
     id: 'regular-top',
     label: 'Regular (Top)',
     values: {
@@ -55,6 +45,16 @@ export const presets: Presets<typeof parameters> = [
       shelfDepth: 5,
       mountLength: 5,
       mountType: 'top',
+    },
+  },
+  {
+    id: 'regular-bottom',
+    label: 'Regular (Bottom)',
+    values: {
+      shelfWidth: 30,
+      shelfDepth: 5,
+      mountLength: 5,
+      mountType: 'bottom',
     },
   },
 ]
