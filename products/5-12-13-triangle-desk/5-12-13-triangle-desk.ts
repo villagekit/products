@@ -54,11 +54,31 @@ export const presets: Presets<typeof parameters> = [
     },
   },
   {
-    id: 'small',
-    label: 'Small',
+    id: 'Full',
+    label: 'Full',
     values: {
       size: 30,
       width: 30,
+      topShelf: 'full',
+      bottomShelf: 'full',
+    },
+  },
+  {
+    id: 'narrow',
+    label: 'Narrow',
+    values: {
+      size: 30,
+      width: 15,
+      topShelf: 'full',
+      bottomShelf: 'full',
+    },
+  },
+  {
+    id: 'small',
+    label: 'Small',
+    values: {
+      size: 15,
+      width: 15,
       topShelf: 'full',
       bottomShelf: 'full',
     },
