@@ -118,6 +118,7 @@ export const parts: PartsFn<typeof parameters> = (parameters) => {
       y: [0, -shelfDepth],
       z: 0,
       fit: 'top',
+      holeVariant: 'half-reverse',
     }),
 
     // x beam
